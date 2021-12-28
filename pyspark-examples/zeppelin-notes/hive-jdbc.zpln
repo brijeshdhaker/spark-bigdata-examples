@@ -1,0 +1,386 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%jdbc(hive)\n\nshow tables;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-03T18:11:57+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "tab_name\nsample_07\nsample_08\ntransaction_detail_hive_tbl\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638531039275_1629132569",
+      "id": "paragraph_1638531039275_1629132569",
+      "dateCreated": "2021-12-03T17:00:39+0530",
+      "dateStarted": "2021-12-03T17:18:37+0530",
+      "dateFinished": "2021-12-03T17:18:39+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:5678"
+    },
+    {
+      "text": "%jdbc(hive)\n\nselect * from sample_08 LIMIT 100\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-03T17:18:42+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": true,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "code": "string",
+                      "description": "string",
+                      "total_emp": "string",
+                      "salary": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "code\tdescription\ttotal_emp\tsalary\n00-0000\tAll Occupations\t135185230\t42270\n11-0000\tManagement occupations\t6152650\t100310\n11-1011\tChief executives\t301930\t160440\n11-1021\tGeneral and operations managers\t1697690\t107970\n11-1031\tLegislators\t64650\t37980\n11-2011\tAdvertising and promotions managers\t36100\t94720\n11-2021\tMarketing managers\t166790\t118160\n11-2022\tSales managers\t333910\t110390\n11-2031\tPublic relations managers\t51730\t101220\n11-3011\tAdministrative services managers\t246930\t79500\n11-3021\tComputer and information systems managers\t276820\t118710\n11-3031\tFinancial managers\t500590\t110640\n11-3041\tCompensation and benefits managers\t38810\t93410\n11-3042\tTraining and development managers\t29350\t93830\n11-3049\tHuman resources managers, all other\t60980\t103920\n11-3051\tIndustrial production managers\t154030\t91200\n11-3061\tPurchasing managers\t67150\t94300\n11-3071\tTransportation, storage, and distribution managers\t96300\t84520\n11-9011\tFarm, ranch, and other agricultural managers\t3410\t62400\n11-9012\tFarmers and ranchers\t490\t49140\n11-9021\tConstruction managers\t220550\t89770\n11-9031\tEducation administrators, preschool and child care center/program\t49630\t46370\n11-9032\tEducation administrators, elementary and secondary school\t219100\t86060\n11-9033\tEducation administrators, postsecondary\t97410\t92920\n11-9039\tEducation administrators, all other\t28090\t77220\n11-9041\tEngineering managers\t182300\t120580\n11-9051\tFood service managers\t196080\t50320\n11-9061\tFuneral directors\t25680\t58810\n11-9071\tGaming managers\t3790\t73480\n11-9081\tLodging managers\t32460\t52550\n11-9111\tMedical and health services managers\t258130\t88750\n11-9121\tNatural sciences managers\t43060\t123140\n11-9131\tPostmasters and mail superintendents\t26410\t59150\n11-9141\tProperty, real estate, and community association managers\t159700\t56250\n11-9151\tSocial and community service managers\t117150\t60570\n11-9199\tManagers, all other\t365460\t95890\n13-0000\tBusiness and financial operations occupations\t6135520\t64720\n13-1011\tAgents and business managers of artists, performers, and athletes\t12110\t81550\n13-1021\tPurchasing agents and buyers, farm products\t13010\t58760\n13-1022\tWholesale and retail buyers, except farm products\t132420\t55540\n13-1023\tPurchasing agents, except wholesale, retail, and farm products\t286990\t57630\n13-1031\tClaims adjusters, examiners, and investigators\t277230\t57550\n13-1032\tInsurance appraisers, auto damage\t11280\t53980\n13-1041\tCompliance officers, except agriculture, construction, health and safety, and transportation\t242270\t53760\n13-1051\tCost estimators\t218400\t60320\n13-1061\tEmergency management specialists\t12260\t53460\n13-1071\tEmployment, recruitment, and placement specialists\t205800\t53870\n13-1072\tCompensation, benefits, and job analysis specialists\t116250\t57060\n13-1073\tTraining and development specialists\t206890\t54830\n13-1079\tHuman resources, training, and labor relations specialists, all other\t217440\t58230\n13-1081\tLogisticians\t98590\t68600\n13-1111\tManagement analysts\t535850\t82920\n13-1121\tMeeting and convention planners\t47960\t47500\n13-1199\tBusiness operations specialists, all other\t1030320\t64990\n13-2011\tAccountants and auditors\t1133580\t65840\n13-2021\tAppraisers and assessors of real estate\t66260\t53410\n13-2031\tBudget analysts\t62630\t68140\n13-2041\tCredit analysts\t74400\t64580\n13-2051\tFinancial analysts\t236720\t84780\n13-2052\tPersonal financial advisors\t146690\t92970\n13-2053\tInsurance underwriters\t98690\t62600\n13-2061\tFinancial examiners\t26020\t78180\n13-2071\tLoan counselors\t29430\t41970\n13-2072\tLoan officers\t321850\t63540\n13-2081\tTax examiners, collectors, and revenue agents\t66030\t53090\n13-2082\tTax preparers\t63030\t35520\n13-2099\tFinancial specialists, all other\t145110\t63880\n15-0000\tComputer and mathematical science occupations\t3308260\t74500\n15-1011\tComputer and information scientists, research\t26610\t100900\n15-1021\tComputer programmers\t394230\t73470\n15-1031\tComputer software engineers, applications\t494160\t87900\n15-1032\tComputer software engineers, systems software\t381830\t94520\n15-1041\tComputer support specialists\t545520\t46370\n15-1051\tComputer systems analysts\t489890\t78830\n15-1061\tDatabase administrators\t115770\t72900\n15-1071\tNetwork and computer systems administrators\t327850\t69570\n15-1081\tNetwork systems and data communications analysts\t230410\t73830\n15-1099\tComputer specialists, all other\t191780\t76000\n15-2011\tActuaries\t18220\t95980\n15-2021\tMathematicians\t2770\t94960\n15-2031\tOperations research analysts\t60860\t74220\n15-2041\tStatisticians\t20680\t74790\n15-2091\tMathematical technicians\t1100\t42100\n15-2099\tMathematical scientists, all other\t6600\t65630\n17-0000\tArchitecture and engineering occupations\t2521630\t71430\n17-1011\tArchitects, except landscape and naval\t110990\t76750\n17-1012\tLandscape architects\t21130\t64000\n17-1021\tCartographers and photogrammetrists\t11690\t57980\n17-1022\tSurveyors\t55780\t55980\n17-2011\tAerospace engineers\t67800\t93980\n17-2021\tAgricultural engineers\t2640\t72850\n17-2031\tBiomedical engineers\t15220\t81120\n17-2041\tChemical engineers\t30970\t88760\n17-2051\tCivil engineers\t261360\t78560\n17-2061\tComputer hardware engineers\t73370\t100180\n17-2071\tElectrical engineers\t154670\t85350\n17-2072\tElectronics engineers, except computer\t139930\t88670\n17-2081\tEnvironmental engineers\t52590\t77970\n17-2111\tHealth and safety engineers, except mining safety engineers and inspectors\t25190\t73830\n17-2112\tIndustrial engineers\t214580\t75740\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638531075692_952639756",
+      "id": "paragraph_1638531075692_952639756",
+      "dateCreated": "2021-12-03T17:01:15+0530",
+      "dateStarted": "2021-12-03T17:18:42+0530",
+      "dateFinished": "2021-12-03T17:18:43+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:5679"
+    },
+    {
+      "text": "%jdbc(hive)\n\nSELECT ${group_by}, count(*) as count\nFROM sample_08\nGROUP BY ${group_by=description,description|code|description|total_emp salary}\nORDER BY count ${order=DESC,DESC|ASC}\nLIMIT ${limit=10};\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-03T17:20:41+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "runOnSelectionChange": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "description": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "group_by": "description",
+          "order": "DESC",
+          "limit": "200"
+        },
+        "forms": {
+          "group_by": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "description",
+                "$$hashKey": "object:5785"
+              },
+              {
+                "value": "code",
+                "$$hashKey": "object:5786"
+              },
+              {
+                "value": "description",
+                "$$hashKey": "object:5787"
+              },
+              {
+                "value": "total_emp salary",
+                "$$hashKey": "object:5788"
+              }
+            ],
+            "name": "group_by",
+            "displayName": "group_by",
+            "defaultValue": "description",
+            "hidden": false,
+            "$$hashKey": "object:5765"
+          },
+          "order": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "DESC",
+                "$$hashKey": "object:5797"
+              },
+              {
+                "value": "ASC",
+                "$$hashKey": "object:5798"
+              }
+            ],
+            "name": "order",
+            "displayName": "order",
+            "defaultValue": "DESC",
+            "hidden": false,
+            "$$hashKey": "object:5766"
+          },
+          "limit": {
+            "type": "TextBox",
+            "name": "limit",
+            "displayName": "limit",
+            "defaultValue": "10",
+            "hidden": false,
+            "$$hashKey": "object:5767"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20211203172041_0bbb661f-04c9-4d4f-8b04-a40dd25e6ce9): \n\nSELECT description, count(*) as count\nFROM sample_08\nGROUP BY description\nORDER BY count DESC\nLIMIT 200\nINFO  : Semantic Analysis Completed\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:description, type:string, comment:null), FieldSchema(name:count, type:bigint, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20211203172041_0bbb661f-04c9-4d4f-8b04-a40dd25e6ce9); Time taken: 0.05 seconds\nINFO  : Executing command(queryId=hive_20211203172041_0bbb661f-04c9-4d4f-8b04-a40dd25e6ce9): \n\nSELECT description, count(*) as count\nFROM sample_08\nGROUP BY description\nORDER BY count DESC\nLIMIT 200\nWARN  : \nINFO  : Query ID = hive_20211203172041_0bbb661f-04c9-4d4f-8b04-a40dd25e6ce9\nINFO  : Total jobs = 2\nINFO  : Launching Job 1 out of 2\nINFO  : Starting task [Stage-1:MAPRED] in serial mode\nINFO  : Number of reduce tasks not specified. Estimated from input data size: 1\nINFO  : In order to change the average load for a reducer (in bytes):\nINFO  :   set hive.exec.reducers.bytes.per.reducer=<number>\nINFO  : In order to limit the maximum number of reducers:\nINFO  :   set hive.exec.reducers.max=<number>\nINFO  : In order to set a constant number of reducers:\nINFO  :   set mapreduce.job.reduces=<number>\nINFO  : number of splits:1\nINFO  : Submitting tokens for job: job_1638527528834_0005\nINFO  : Executing with tokens: []\nINFO  : The url to track the job: http://quickstart-bigdata:8088/proxy/application_1638527528834_0005/\nINFO  : Starting Job = job_1638527528834_0005, Tracking URL = http://quickstart-bigdata:8088/proxy/application_1638527528834_0005/\nINFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1638527528834_0005\nINFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1\nINFO  : 2021-12-03 17:20:49,220 Stage-1 map = 0%,  reduce = 0%\nINFO  : 2021-12-03 17:20:53,311 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.59 sec\nINFO  : 2021-12-03 17:20:58,434 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.16 sec\nINFO  : MapReduce Total cumulative CPU time: 3 seconds 160 msec\nINFO  : Ended Job = job_1638527528834_0005\nINFO  : Launching Job 2 out of 2\nINFO  : Starting task [Stage-2:MAPRED] in serial mode\nINFO  : Number of reduce tasks determined at compile time: 1\nINFO  : In order to change the average load for a reducer (in bytes):\nINFO  :   set hive.exec.reducers.bytes.per.reducer=<number>\nINFO  : In order to limit the maximum number of reducers:\nINFO  :   set hive.exec.reducers.max=<number>\nINFO  : In order to set a constant number of reducers:\nINFO  :   set mapreduce.job.reduces=<number>\nINFO  : number of splits:1\nINFO  : Submitting tokens for job: job_1638527528834_0006\nINFO  : Executing with tokens: []\nINFO  : The url to track the job: http://quickstart-bigdata:8088/proxy/application_1638527528834_0006/\nINFO  : Starting Job = job_1638527528834_0006, Tracking URL = http://quickstart-bigdata:8088/proxy/application_1638527528834_0006/\nINFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1638527528834_0006\nINFO  : Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1\nINFO  : 2021-12-03 17:21:06,030 Stage-2 map = 0%,  reduce = 0%\nINFO  : 2021-12-03 17:21:10,117 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.26 sec\nINFO  : 2021-12-03 17:21:15,222 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 3.02 sec\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "description\tcount\nDerrick operators, oil and gas\t1\nDentists, general\t1\nDentists, all other specialists\t1\nDental laboratory technicians\t1\nDental hygienists\t1\nDental assistants\t1\nDemonstrators and product promoters\t1\nDatabase administrators\t1\nData entry keyers\t1\nDancers\t1\nCutting, punching, and press machine setters, operators, and tenders, metal and plastic\t1\nCutting and slicing machine setters, operators, and tenders\t1\nCutters and trimmers, hand\t1\nCustomer service representatives\t1\nCurators\t1\nCrushing, grinding, and polishing machine setters, operators, and tenders\t1\nCrossing guards\t1\nCriminal justice and law enforcement teachers, postsecondary\t1\nCredit authorizers, checkers, and clerks\t1\nCredit analysts\t1\nCrane and tower operators\t1\nCraft artists\t1\nCourt, municipal, and license clerks\t1\nCourt reporters\t1\nCouriers and messengers\t1\nCounter attendants, cafeteria, food concession, and coffee shop\t1\nCounter and rental clerks\t1\nCounselors, all other\t1\nCostume attendants\t1\nCost estimators\t1\nCorrespondence clerks\t1\nCorrectional officers and jailers\t1\nCooling and freezing equipment operators and tenders\t1\nCooks, short order\t1\nCooks, restaurant\t1\nCooks, private household\t1\nCooks, institution and cafeteria\t1\nCooks, fast food\t1\nCooks, all other\t1\nConveyor operators and tenders\t1\nControl and valve installers and repairers, except mechanical door\t1\nContinuous mining machine operators\t1\nConstruction managers\t1\nConstruction laborers\t1\nConstruction and related workers, all other\t1\nConstruction and extraction occupations\t1\nConstruction and building inspectors\t1\nConservation scientists\t1\nConcierges\t1\nComputer-controlled machine tool operators, metal and plastic\t1\nComputer, automated teller, and office machine repairers\t1\nComputer systems analysts\t1\nComputer support specialists\t1\nComputer specialists, all other\t1\nComputer software engineers, systems software\t1\nComputer software engineers, applications\t1\nComputer science teachers, postsecondary\t1\nComputer programmers\t1\nComputer operators\t1\nComputer hardware engineers\t1\nComputer and mathematical science occupations\t1\nComputer and information systems managers\t1\nComputer and information scientists, research\t1\nCompliance officers, except agriculture, construction, health and safety, and transportation\t1\nCompensation, benefits, and job analysis specialists\t1\nCompensation and benefits managers\t1\nCommunity and social services occupations\t1\nCommunity and social service specialists, all other\t1\nCommunications teachers, postsecondary\t1\nCommunications equipment operators, all other\t1\nCommercial pilots\t1\nCommercial divers\t1\nZoologists and wildlife biologists\t1\nCombined food preparation and serving workers, including fast food\t1\nCoin, vending, and amusement machine servicers and repairers\t1\nCoil winders, tapers, and finishers\t1\nCoating, painting, and spraying machine setters, operators, and tenders\t1\nCoaches and scouts\t1\nClinical, counseling, and school psychologists\t1\nClergy\t1\nCleaning, washing, and metal pickling equipment operators and tenders\t1\nCleaners of vehicles and equipment\t1\nClaims adjusters, examiners, and investigators\t1\nCivil engineers\t1\nCivil engineering technicians\t1\nChoreographers\t1\nChiropractors\t1\nChild, family, and school social workers\t1\nChild care workers\t1\nChief executives\t1\nChemists\t1\nChemistry teachers, postsecondary\t1\nChemical technicians\t1\nChemical plant and system operators\t1\nChemical equipment operators and tenders\t1\nChemical engineers\t1\nChefs and head cooks\t1\nCementing and gluing machine operators and tenders\t1\nCement masons and concrete finishers\t1\nCashiers\t1\nCartographers and photogrammetrists\t1\nCarpet installers\t1\nCarpenters\t1\nCargo and freight agents\t1\nCardiovascular technologists and technicians\t1\nCaptains, mates, and pilots of water vessels\t1\nCamera operators, television, video, and motion picture\t1\nCamera and photographic equipment repairers\t1\nCabinetmakers and bench carpenters\t1\nButchers and meat cutters\t1\nBusiness teachers, postsecondary\t1\nBusiness operations specialists, all other\t1\nBusiness and financial operations occupations\t1\nBus drivers, transit and intercity\t1\nBus drivers, school\t1\nBus and truck mechanics and diesel engine specialists\t1\nBuilding cleaning workers, all other\t1\nBuilding and grounds cleaning and maintenance occupations\t1\nBudget analysts\t1\nBrokerage clerks\t1\nBroadcast technicians\t1\nBroadcast news analysts\t1\nBridge and lock tenders\t1\nBrickmasons and blockmasons\t1\nBookkeeping, accounting, and auditing clerks\t1\nBookbinders\t1\nBoilermakers\t1\nBiomedical engineers\t1\nBiological technicians\t1\nBiological scientists, all other\t1\nBiological science teachers, postsecondary\t1\nBiochemists and biophysicists\t1\nBindery workers\t1\nBilling and posting clerks and machine operators\t1\nBill and account collectors\t1\nBicycle repairers\t1\nBartenders\t1\nBarbers\t1\nBakers\t1\nBailiffs\t1\nBaggage porters and bellhops\t1\nAvionics technicians\t1\nAutomotive service technicians and mechanics\t1\nAutomotive glass installers and repairers\t1\nAutomotive body and related repairers\t1\nAudiologists\t1\nAudio-visual collections specialists\t1\nAudio and video equipment technicians\t1\nAtmospheric, earth, marine, and space sciences teachers, postsecondary\t1\nAtmospheric and space scientists\t1\nAthletic trainers\t1\nAthletes and sports competitors\t1\nAstronomers\t1\nAssemblers and fabricators, all other\t1\nArts, design, entertainment, sports, and media occupations\t1\nArtists and related workers, all other\t1\nArt, drama, and music teachers, postsecondary\t1\nArt directors\t1\nArea, ethnic, and cultural studies teachers, postsecondary\t1\nArchivists\t1\nArchitecture teachers, postsecondary\t1\nArchitecture and engineering occupations\t1\nArchitectural and civil drafters\t1\nArchitects, except landscape and naval\t1\nArbitrators, mediators, and conciliators\t1\nAppraisers and assessors of real estate\t1\nAnthropology and archeology teachers, postsecondary\t1\nAnthropologists and archeologists\t1\nWriters and authors\t1\nAnimal scientists\t1\nAnimal control workers\t1\nAnimal breeders\t1\nAnesthesiologists\t1\nAmusement and recreation attendants\t1\nAmbulance drivers and attendants, except emergency medical technicians\t1\nAll other information and record clerks\t1\nAll Occupations\t1\nAirline pilots, copilots, and flight engineers\t1\nAirfield operations specialists\t1\nAircraft structure, surfaces, rigging, and systems assemblers\t1\nAircraft mechanics and service technicians\t1\nAircraft cargo handling supervisors\t1\nAir traffic controllers\t1\nAgricultural workers, all other\t1\nAgricultural sciences teachers, postsecondary\t1\nAgricultural inspectors\t1\nAgricultural equipment operators\t1\nAgricultural engineers\t1\nAgricultural and food science technicians\t1\nAgents and business managers of artists, performers, and athletes\t1\nAerospace engineers\t1\nAerospace engineering and operations technicians\t1\nWord processors and typists\t1\nAdvertising and promotions managers\t1\nAdult literacy, remedial education, and GED teachers and instructors\t1\nAdministrative services managers\t1\nAdministrative law judges, adjudicators, and hearing officers\t1\nActuaries\t1\nWoodworking machine setters, operators, and tenders, except sawing\t1\nAccountants and auditors\t1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "HIVE JOB",
+          "tooltip": "View in YARN WEB UI",
+          "group": "jdbc",
+          "values": [
+            {
+              "jobUrl": "http://quickstart-bigdata:8088/proxy/application_1638527528834_0005/",
+              "$$hashKey": "object:5925"
+            }
+          ],
+          "interpreterSettingId": "jdbc"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638531593030_1972801128",
+      "id": "paragraph_1638531593030_1972801128",
+      "dateCreated": "2021-12-03T17:09:53+0530",
+      "dateStarted": "2021-12-03T17:20:41+0530",
+      "dateFinished": "2021-12-03T17:21:17+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:5680"
+    },
+    {
+      "text": "%jdbc\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-03T17:14:35+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638531875064_1659665585",
+      "id": "paragraph_1638531875064_1659665585",
+      "dateCreated": "2021-12-03T17:14:35+0530",
+      "status": "READY",
+      "$$hashKey": "object:5681"
+    }
+  ],
+  "name": "hive-jdbc",
+  "id": "2GNWDPY8W",
+  "defaultInterpreterGroup": "jdbc",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/hive/hive-jdbc"
+}

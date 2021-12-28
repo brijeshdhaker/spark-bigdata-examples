@@ -1,0 +1,1031 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Advantage",
+      "text": "%hive\n\n/* \nAdvantage : \n1. Fast accessed to the data\n2. Provides the ability to perform an operation on a smaller dataset\n*/\n\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:14:29+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_946241545",
+      "id": "paragraph_1639277817222_1025855003",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:19005",
+      "dateFinished": "2021-12-20T05:14:32+0000",
+      "dateStarted": "2021-12-20T05:14:29+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    },
+    {
+      "text": "%hive\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:09:39+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_1211040802",
+      "id": "paragraph_1639295298354_986197200",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19006"
+    },
+    {
+      "title": "Dynamic Partitioning : Create Hive Table",
+      "text": "%hive\n\nCREATE TABLE zipcodes(\nRecordNumber int,\nCountry string,\nCity string,\nZipcode int,\nState string\n)\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ',';",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:09:39+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "fontSize": 9,
+        "title": true,
+        "results": {},
+        "enabled": true,
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_1639149199",
+      "id": "paragraph_1639277931546_1884722565",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19007"
+    },
+    {
+      "text": "%hive\n\nCREATE TABLE zipcodes_tmp(\n    RecordNumber int,\n    Country string,\n    City string,Zipcode int,\n    State string\n) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:27:57+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978038455_1513340361",
+      "id": "paragraph_1639978038455_1513340361",
+      "dateCreated": "2021-12-20T05:27:18+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:25438"
+    },
+    {
+      "text": "%hive\n\n\nset hive.exec.dynamic.partition=true; \nset hive.exec.dynamic.partition.mode=nonstrict\n\n-- This action will delete file from hdfs.\nLOAD DATA local INPATH '/apps/hostpath/datasets/zipcodes20.csv' INTO TABLE zipcodes_tmp;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:28:42+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_734737310",
+      "id": "paragraph_1639294570328_1254356602",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19008"
+    },
+    {
+      "text": "%hive\n\nINSERT OVERWRITE TABLE zipcodes PARTITION(state) SELECT RecordNumber,Country,City,Zipcode,State from  zipcodes_tmp;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:28:53+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978077521_1342235759",
+      "id": "paragraph_1639978077521_1342235759",
+      "dateCreated": "2021-12-20T05:27:57+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:25507"
+    },
+    {
+      "text": "%hive\n\nselect * from zipcodes;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:09:44+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "recordnumber": "string",
+                      "country": "string",
+                      "city": "string",
+                      "zipcode": "string",
+                      "state": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "recordnumber\tcountry\tcity\tzipcode\tstate\n1\tUS\tPARC PARQUE\t704\tPR\n2\tUS\tPASEO COSTA DEL SUR\t704\tPR\n10\tUS\tBDA SAN LUIS\t709\tPR\n61391\tUS\tCINGULAR WIRELESS\t76166\tTX\n61392\tUS\tFORT WORTH\t76177\tTX\n61393\tUS\tFT WORTH\t76177\tTX\n4\tUS\tURB EUGENE RICE\t704\tPR\n39827\tUS\tMESA\t85209\tAZ\n39828\tUS\tMESA\t85210\tAZ\n49345\tUS\tHILLIARD\t32046\tFL\n49346\tUS\tHOLDER\t34445\tFL\n49347\tUS\tHOLT\t32564\tFL\n49348\tUS\tHOMOSASSA\t34487\tFL\n3\tUS\tSECT LANAUSSE\t704\tPR\n54354\tUS\tSPRING GARDEN\t36275\tAL\n54355\tUS\tSPRINGVILLE\t35146\tAL\n54356\tUS\tSPRUCE PINE\t35585\tAL\n76511\tUS\tASH HILL\t27007\tNC\n76512\tUS\tASHEBORO\t27203\tNC\n76513\tUS\tASHEBORO\t27204\tNC\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_1951490407",
+      "id": "paragraph_1639294671589_13386788",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19009"
+    },
+    {
+      "text": "%hive\n\nset hive.exec.dynamic.partition=true; \nset hive.exec.dynamic.partition.mode=nonstrict",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:14:40+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_347371217",
+      "id": "paragraph_1639295498730_702703712",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:19010",
+      "dateFinished": "2021-12-20T05:14:41+0000",
+      "dateStarted": "2021-12-20T05:14:40+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\nselect * from zipcodes where state = \"${state=AL,AL|PR|TX|AZ|FL|NC}\";  ",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:15:19+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "runOnSelectionChange": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "recordnumber": "string",
+                      "country": "string",
+                      "city": "string",
+                      "zipcode": "string",
+                      "state": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "state": "NC"
+        },
+        "forms": {
+          "state": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "AL",
+                "$$hashKey": "object:25022"
+              },
+              {
+                "value": "PR",
+                "$$hashKey": "object:25023"
+              },
+              {
+                "value": "TX",
+                "$$hashKey": "object:25024"
+              },
+              {
+                "value": "AZ",
+                "$$hashKey": "object:25025"
+              },
+              {
+                "value": "FL",
+                "$$hashKey": "object:25026"
+              },
+              {
+                "value": "NC",
+                "$$hashKey": "object:25027"
+              }
+            ],
+            "name": "state",
+            "displayName": "state",
+            "defaultValue": "AL",
+            "hidden": false,
+            "$$hashKey": "object:25011"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "recordnumber\tcountry\tcity\tzipcode\tstate\n76511\tUS\tASH HILL\t27007\tNC\n76512\tUS\tASHEBORO\t27203\tNC\n76513\tUS\tASHEBORO\t27204\tNC\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_2144638965",
+      "id": "paragraph_1639294985839_1739183214",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:19013",
+      "dateFinished": "2021-12-20T05:15:19+0000",
+      "dateStarted": "2021-12-20T05:15:19+0000"
+    },
+    {
+      "text": "%hive\n\nDESCRIBE FORMATTED zipcodes;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:30:15+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978186114_296829017",
+      "id": "paragraph_1639978186114_296829017",
+      "dateCreated": "2021-12-20T05:29:46+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:25599",
+      "dateFinished": "2021-12-20T05:30:15+0000",
+      "dateStarted": "2021-12-20T05:30:14+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "col_name\tdata_type\tcomment\n# col_name\tdata_type\tcomment\nrecordnumber\tint\t\ncountry\tstring\t\ncity\tstring\t\nzipcode\tint\t\n\tnull\tnull\n# Partition Information\tnull\tnull\n# col_name\tdata_type\tcomment\nstate\tstring\t\n\tnull\tnull\n# Detailed Table Information\tnull\tnull\nDatabase:           \tdefault             \tnull\nOwnerType:          \tUSER                \tnull\nOwner:              \troot                \tnull\nCreateTime:         \tMon Dec 20 04:47:31 UTC 2021\tnull\nLastAccessTime:     \tUNKNOWN             \tnull\nRetention:          \t0                   \tnull\nLocation:           \thdfs://namenode:9000/apps/hive-3.1.2/warehouse/zipcodes\tnull\nTable Type:         \tMANAGED_TABLE       \tnull\nTable Parameters:\tnull\tnull\n\tCOLUMN_STATS_ACCURATE\t{\\\"BASIC_STATS\\\":\\\"true\\\"}\n\tbucketing_version   \t2                   \n\tnumFiles            \t6                   \n\tnumPartitions       \t6                   \n\tnumRows             \t20                  \n\trawDataSize         \t470                 \n\ttotalSize           \t490                 \n\ttransient_lastDdlTime\t1639975651          \n\tnull\tnull\n# Storage Information\tnull\tnull\nSerDe Library:      \torg.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe\tnull\nInputFormat:        \torg.apache.hadoop.mapred.TextInputFormat\tnull\nOutputFormat:       \torg.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat\tnull\nCompressed:         \tNo                  \tnull\nNum Buckets:        \t-1                  \tnull\nBucket Columns:     \t[]                  \tnull\nSort Columns:       \t[]                  \tnull\nStorage Desc Params:\tnull\tnull\n\tfield.delim         \t,                   \n\tserialization.format\t,                   \n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\nSHOW PARTITIONS zipcodes;\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:30:46+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "partition": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978220513_1768904102",
+      "id": "paragraph_1639978220513_1768904102",
+      "dateCreated": "2021-12-20T05:30:20+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:26362",
+      "dateFinished": "2021-12-20T05:30:45+0000",
+      "dateStarted": "2021-12-20T05:30:45+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "partition\nstate=AL\nstate=AZ\nstate=FL\nstate=NC\nstate=PR\nstate=TX\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\nSHOW PARTITIONS zipcodes PARTITION(state='NC');",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:30:54+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "partition": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978242152_106801971",
+      "id": "paragraph_1639978242152_106801971",
+      "dateCreated": "2021-12-20T05:30:42+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:26434",
+      "dateFinished": "2021-12-20T05:30:53+0000",
+      "dateStarted": "2021-12-20T05:30:53+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "partition\nstate=NC\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\nDESCRIBE FORMATTED zipcodes PARTITION(state='PR');\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:32:13+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978322835_1481330630",
+      "id": "paragraph_1639978322835_1481330630",
+      "dateCreated": "2021-12-20T05:32:02+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:27190",
+      "dateFinished": "2021-12-20T05:32:12+0000",
+      "dateStarted": "2021-12-20T05:32:12+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "col_name\tdata_type\tcomment\n# col_name\tdata_type\tcomment\nrecordnumber\tint\t\ncountry\tstring\t\ncity\tstring\t\nzipcode\tint\t\n\tnull\tnull\n# Partition Information\tnull\tnull\n# col_name\tdata_type\tcomment\nstate\tstring\t\n\tnull\tnull\n# Detailed Partition Information\tnull\tnull\nPartition Value:    \t[PR]                \tnull\nDatabase:           \tdefault             \tnull\nTable:              \tzipcodes            \tnull\nCreateTime:         \tUNKNOWN             \tnull\nLastAccessTime:     \tUNKNOWN             \tnull\nLocation:           \thdfs://namenode:9000/apps/hive-3.1.2/warehouse/zipcodes/state=PR\tnull\nPartition Parameters:\tnull\tnull\n\tCOLUMN_STATS_ACCURATE\t{\\\"BASIC_STATS\\\":\\\"true\\\",\\\"COLUMN_STATS\\\":{\\\"city\\\":\\\"true\\\",\\\"country\\\":\\\"true\\\",\\\"recordnumber\\\":\\\"true\\\",\\\"zipcode\\\":\\\"true\\\"}}\n\tnumFiles            \t1                   \n\tnumRows             \t5                   \n\trawDataSize         \t116                 \n\ttotalSize           \t121                 \n\ttransient_lastDdlTime\t1639976788          \n\tnull\tnull\n# Storage Information\tnull\tnull\nSerDe Library:      \torg.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe\tnull\nInputFormat:        \torg.apache.hadoop.mapred.TextInputFormat\tnull\nOutputFormat:       \torg.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat\tnull\nCompressed:         \tNo                  \tnull\nNum Buckets:        \t-1                  \tnull\nBucket Columns:     \t[]                  \tnull\nSort Columns:       \t[]                  \tnull\nStorage Desc Params:\tnull\tnull\n\tfield.delim         \t,                   \n\tserialization.format\t,                   \n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\nSHOW TABLE EXTENDED LIKE zipcodes PARTITION(state='PR');",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:32:25+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "tab_name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639978341662_1780650943",
+      "id": "paragraph_1639978341662_1780650943",
+      "dateCreated": "2021-12-20T05:32:21+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:27962",
+      "dateFinished": "2021-12-20T05:32:25+0000",
+      "dateStarted": "2021-12-20T05:32:25+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "tab_name\ntableName:zipcodes\nowner:root\nlocation:hdfs://namenode:9000/apps/hive-3.1.2/warehouse/zipcodes/state=PR\ninputformat:org.apache.hadoop.mapred.TextInputFormat\noutputformat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat\ncolumns:struct columns { i32 recordnumber, string country, string city, i32 zipcode}\npartitioned:true\npartitionColumns:struct partition_columns { string state}\ntotalNumberFiles:1\ntotalFileSize:121\nmaxFileSize:121\nminFileSize:121\nlastAccessTime:1639976777295\nlastUpdateTime:1639976789019\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\n\n\nDROP TABLE zipcodes;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:31:03+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979711_385893112",
+      "id": "paragraph_1639279170592_488094195",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19014"
+    },
+    {
+      "text": "%hive\n--DESCRIBE zipcodes;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:09:39+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979712_221470108",
+      "id": "paragraph_1639279689179_1916778707",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19015"
+    },
+    {
+      "text": "%hive\n\nSHOW PARTITIONS zipcodes;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:33:04+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "partition": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "partition\nstate=AL\nstate=AZ\nstate=FL\nstate=NC\nstate=PR\nstate=TX\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979712_694681626",
+      "id": "paragraph_1639279811045_619111992",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:19016",
+      "dateFinished": "2021-12-20T05:33:04+0000",
+      "dateStarted": "2021-12-20T05:33:04+0000"
+    },
+    {
+      "text": "%hive\n\nALTER TABLE zipcodes ADD PARTITION (state='CA') LOCATION '/user/data/zipcodes_ca';",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:33:49+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979712_473753070",
+      "id": "paragraph_1639295588794_1172283875",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19020"
+    },
+    {
+      "text": "%hive\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-20T05:09:39+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639976979712_40483179",
+      "id": "paragraph_1639295839849_1183986452",
+      "dateCreated": "2021-12-20T05:09:39+0000",
+      "status": "READY",
+      "$$hashKey": "object:19023"
+    }
+  ],
+  "name": "hive-partition-tables",
+  "id": "2GRBXREBQ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/hive-partition-tables"
+}

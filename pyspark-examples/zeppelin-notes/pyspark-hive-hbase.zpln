@@ -1,0 +1,185 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%spark.conf\n\nspark.jars  file:///opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hive/lib/hive-hbase-handler-2.1.1-cdh6.3.2.jar",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-23T18:09:29+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638384744512_1909351765",
+      "id": "paragraph_1638384744512_1909351765",
+      "dateCreated": "2021-12-02T00:22:24+0530",
+      "dateStarted": "2021-12-23T18:09:29+0530",
+      "dateFinished": "2021-12-23T18:09:29+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:105"
+    },
+    {
+      "text": "%pyspark\n\n# SparkContext as spark\n# HiveContext Present As sqlContext\n\nsqlContext.sql(\"use default\")\nsqlContext.sql(\"show tables\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-23T18:09:33+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+--------------------+-----------+\n|database|           tableName|isTemporary|\n+--------+--------------------+-----------+\n| default|       bucketed_huge|      false|\n| default|      bucketed_large|      false|\n| default|      bucketed_small|      false|\n| default|           customers|      false|\n| default|                huge|      false|\n| default|               large|      false|\n| default|              orders|      false|\n| default|               small|      false|\n| default|transaction_detai...|      false|\n| default|            zipcodes|      false|\n| default|       zipcodes_temp|      false|\n+--------+--------------------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638411082061_375960719",
+      "id": "paragraph_1638411082061_375960719",
+      "dateCreated": "2021-12-02T07:41:22+0530",
+      "dateStarted": "2021-12-23T18:09:33+0530",
+      "dateFinished": "2021-12-23T18:09:57+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:106"
+    },
+    {
+      "text": "%pyspark\n\nsqlContext.sql(\"select * from transaction_detail_hive_tbl\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-23T18:10:01+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------+---------------------+----------------------------------+------------------------+--------------------+------------------+---------------------+------------------------+\n|transaction_id|transaction_card_type|transaction_ecommerce_website_name|transaction_product_name|transaction_datetime|transaction_amount|transaction_city_name|transaction_country_name|\n+--------------+---------------------+----------------------------------+------------------------+--------------------+------------------+---------------------+------------------------+\n|             1|           MasterCard|                      www.ebay.com|                  Laptop| 2019-05-14 15:24:12|             50.85|               Mumbai|                   India|\n|             2|           MasterCard|                    www.amazon.com|              Wrist Band| 2019-05-14 15:24:13|            259.12|                 Pune|                   India|\n|             3|           MasterCard|                  www.flipkart.com|                TV Stand| 2019-05-14 15:24:14|            328.16|        New York City|           United States|\n|             4|                 Visa|                  www.snapdeal.com|                TV Stand| 2019-05-14 15:24:15|            399.06|            New Delhi|                   India|\n|             5|                 Visa|                      www.ebay.com|     External Hard Drive| 2019-05-14 15:24:16|            194.52|                 Rome|                   Italy|\n+--------------+---------------------+----------------------------------+------------------------+--------------------+------------------+---------------------+------------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://quickstart-bigdata:4040/jobs/job?id=0",
+              "$$hashKey": "object:449"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638384983451_1866590903",
+      "id": "paragraph_1638384983451_1866590903",
+      "dateCreated": "2021-12-02T00:26:23+0530",
+      "dateStarted": "2021-12-23T18:10:01+0530",
+      "dateFinished": "2021-12-23T18:10:06+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:107"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-02T07:46:17+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1638411377270_1771889263",
+      "id": "paragraph_1638411377270_1771889263",
+      "dateCreated": "2021-12-02T07:46:17+0530",
+      "status": "READY",
+      "$$hashKey": "object:110"
+    }
+  ],
+  "name": "pyspark-hive-hbase",
+  "id": "2GRHRBP3V",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/pyspark-hive-hbase"
+}

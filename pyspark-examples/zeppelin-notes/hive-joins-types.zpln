@@ -1,0 +1,714 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%jdbc(hive)\n\nCREATE TABLE IF NOT EXISTS CUSTOMERS(\n    ID INT,\n    NAME String,\n    AGE INT,\n    ADDRESS String,\n    SALARY float\n)\nCOMMENT 'Custormer Table'\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ','; ",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:37:31+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639303251007_109740909",
+      "id": "paragraph_1639303251007_109740909",
+      "dateCreated": "2021-12-12T15:30:51+0530",
+      "dateStarted": "2021-12-12T15:37:31+0530",
+      "dateFinished": "2021-12-12T15:37:31+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:473"
+    },
+    {
+      "text": "%jdbc(hive)\n\nLOAD DATA INPATH '/data/customer.csv' OVERWRITE INTO TABLE CUSTOMERS;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:48:25+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304179094_711119477",
+      "id": "paragraph_1639304179094_711119477",
+      "dateCreated": "2021-12-12T15:46:19+0530",
+      "dateStarted": "2021-12-12T15:48:25+0530",
+      "dateFinished": "2021-12-12T15:48:25+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:474"
+    },
+    {
+      "text": "%jdbc(hive)\n\nselect * from CUSTOMERS;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:50:39+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 394,
+              "optionOpen": true,
+              "setting": {
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "stacked": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "forceY": false,
+                  "lineWithFocus": false,
+                  "isDateFormat": false,
+                  "dateFormat": ""
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "style": "stack"
+                }
+              },
+              "keys": [
+                {
+                  "name": "id",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "name",
+                  "index": 1,
+                  "aggr": "count"
+                },
+                {
+                  "name": "salary",
+                  "index": 4,
+                  "aggr": "sum"
+                }
+              ]
+            }
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tname\tage\taddress\tsalary\n1\tRamesh\t32\tAhmedabad\t2000.0\n2\tKhilan\t25\tDelhi\t1500.0\n3\tkaushik\t23\tKota\t2000.0\n4\tChaitali\t25\tMumbai\t6500.0\n5\tHardik\t27\tBhopal\t8500.0\n6\tKomal\t22\tMP\t4500.0\n7\tMuffy\t24\tIndore\t10000.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304315774_436701800",
+      "id": "paragraph_1639304315774_436701800",
+      "dateCreated": "2021-12-12T15:48:35+0530",
+      "dateStarted": "2021-12-12T15:48:55+0530",
+      "dateFinished": "2021-12-12T15:48:55+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:475"
+    },
+    {
+      "text": "%jdbc(hive)\n\nCREATE TABLE IF NOT EXISTS ORDERS(\n    OID INT,\n    `DATE` TIMESTAMP,\n    CUSTOMER_ID INT,\n    AMOUNT float\n)\nCOMMENT 'Order Table'\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY ','; ",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:41:43+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639303500158_1035549352",
+      "id": "paragraph_1639303500158_1035549352",
+      "dateCreated": "2021-12-12T15:35:00+0530",
+      "dateStarted": "2021-12-12T15:41:43+0530",
+      "dateFinished": "2021-12-12T15:41:43+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:476"
+    },
+    {
+      "text": "%jdbc(hive)\n\nLOAD DATA INPATH '/data/orders.csv' OVERWRITE INTO TABLE ORDERS;\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:53:55+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : 0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639303869720_1229328237",
+      "id": "paragraph_1639303869720_1229328237",
+      "dateCreated": "2021-12-12T15:41:09+0530",
+      "dateStarted": "2021-12-12T15:53:55+0530",
+      "dateFinished": "2021-12-12T15:53:55+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:477"
+    },
+    {
+      "text": "%jdbc(hive)\n\nselect * from ORDERS;",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:54:45+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "oid": "string",
+                      "date": "string",
+                      "customer_id": "string",
+                      "amount": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "keys": [],
+              "groups": [],
+              "values": [],
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "oid\tdate\tcustomer_id\tamount\n102\t2009-10-08 00:00:00.0\t3\t3000.0\n100\t2009-10-08 00:00:00.0\t3\t1500.25\n101\t2009-11-20 00:00:00.0\t2\t1560.0\n103\t2008-05-20 00:00:00.0\t4\t2060.5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304635150_1363102826",
+      "id": "paragraph_1639304635150_1363102826",
+      "dateCreated": "2021-12-12T15:53:55+0530",
+      "dateStarted": "2021-12-12T15:54:22+0530",
+      "dateFinished": "2021-12-12T15:54:23+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:478"
+    },
+    {
+      "text": "%jdbc(hive)\n\nSELECT c.ID, c.NAME, c.AGE, o.AMOUNT \nFROM CUSTOMERS c JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID);",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:59:47+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "name": "string",
+                      "age": "string",
+                      "amount": "string"
+                    },
+                    "updated": true
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304662863_1939099136",
+      "id": "paragraph_1639304662863_1939099136",
+      "dateCreated": "2021-12-12T15:54:22+0530",
+      "status": "FINISHED",
+      "$$hashKey": "object:479",
+      "dateFinished": "2021-12-12T15:56:18+0530",
+      "dateStarted": "2021-12-12T15:55:56+0530",
+      "title": "JOIN  OR OUTER JOIN",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20211212155556_8d38a760-622a-4cd2-903e-1ad564f211ef): \n\nSELECT c.ID, c.NAME, c.AGE, o.AMOUNT \nFROM CUSTOMERS c JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nINFO  : Semantic Analysis Completed\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:c.id, type:int, comment:null), FieldSchema(name:c.name, type:string, comment:null), FieldSchema(name:c.age, type:int, comment:null), FieldSchema(name:o.amount, type:float, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20211212155556_8d38a760-622a-4cd2-903e-1ad564f211ef); Time taken: 0.156 seconds\nINFO  : Executing command(queryId=hive_20211212155556_8d38a760-622a-4cd2-903e-1ad564f211ef): \n\nSELECT c.ID, c.NAME, c.AGE, o.AMOUNT \nFROM CUSTOMERS c JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nWARN  : \nINFO  : Query ID = hive_20211212155556_8d38a760-622a-4cd2-903e-1ad564f211ef\nINFO  : Total jobs = 1\nINFO  : Starting task [Stage-4:MAPREDLOCAL] in serial mode\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "id\tname\tage\tamount\n2\tKhilan\t25\t1560.0\n3\tkaushik\t23\t3000.0\n3\tkaushik\t23\t1500.25\n4\tChaitali\t25\t2060.5\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` \nFROM CUSTOMERS c \nLEFT OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID);\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T15:58:45+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "name": "string",
+                      "amount": "string",
+                      "date": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304756193_111140168",
+      "id": "paragraph_1639304756193_111140168",
+      "dateCreated": "2021-12-12T15:55:56+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2374",
+      "dateFinished": "2021-12-12T15:58:45+0530",
+      "dateStarted": "2021-12-12T15:58:27+0530",
+      "title": "LEFT OUTER JOIN",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20211212155827_9764aa94-f3f8-4ae3-8df0-4a7a3eb7a06a): \n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` \nFROM CUSTOMERS c \nLEFT OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nINFO  : Semantic Analysis Completed\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:c.id, type:int, comment:null), FieldSchema(name:c.name, type:string, comment:null), FieldSchema(name:o.amount, type:float, comment:null), FieldSchema(name:o.date, type:timestamp, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20211212155827_9764aa94-f3f8-4ae3-8df0-4a7a3eb7a06a); Time taken: 0.056 seconds\nINFO  : Executing command(queryId=hive_20211212155827_9764aa94-f3f8-4ae3-8df0-4a7a3eb7a06a): \n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` \nFROM CUSTOMERS c \nLEFT OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nWARN  : \nINFO  : Query ID = hive_20211212155827_9764aa94-f3f8-4ae3-8df0-4a7a3eb7a06a\nINFO  : Total jobs = 1\nINFO  : Starting task [Stage-4:MAPREDLOCAL] in serial mode\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "id\tname\tamount\tdate\n1\tRamesh\tnull\tnull\n2\tKhilan\t1560.0\t2009-11-20 00:00:00.0\n3\tkaushik\t3000.0\t2009-10-08 00:00:00.0\n3\tkaushik\t1500.25\t2009-10-08 00:00:00.0\n4\tChaitali\t2060.5\t2008-05-20 00:00:00.0\n5\tHardik\tnull\tnull\n6\tKomal\tnull\tnull\n7\tMuffy\tnull\tnull\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\n\n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` FROM CUSTOMERS c \nRIGHT OUTER JOIN ORDERS o ON (c.ID = o.CUSTOMER_ID);\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T16:01:19+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "name": "string",
+                      "amount": "string",
+                      "date": "string"
+                    },
+                    "updated": true
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639304889373_2038739616",
+      "id": "paragraph_1639304889373_2038739616",
+      "dateCreated": "2021-12-12T15:58:09+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2711",
+      "dateFinished": "2021-12-12T16:01:19+0530",
+      "dateStarted": "2021-12-12T16:00:58+0530",
+      "title": "RIGHT OUTER JOIN",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20211212160058_25c0c938-c562-476b-89f0-1d7071bc39bf): \n\n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` FROM CUSTOMERS c \nRIGHT OUTER JOIN ORDERS o ON (c.ID = o.CUSTOMER_ID)\nINFO  : Semantic Analysis Completed\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:c.id, type:int, comment:null), FieldSchema(name:c.name, type:string, comment:null), FieldSchema(name:o.amount, type:float, comment:null), FieldSchema(name:o.date, type:timestamp, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20211212160058_25c0c938-c562-476b-89f0-1d7071bc39bf); Time taken: 0.08 seconds\nINFO  : Executing command(queryId=hive_20211212160058_25c0c938-c562-476b-89f0-1d7071bc39bf): \n\n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE` FROM CUSTOMERS c \nRIGHT OUTER JOIN ORDERS o ON (c.ID = o.CUSTOMER_ID)\nWARN  : \nINFO  : Query ID = hive_20211212160058_25c0c938-c562-476b-89f0-1d7071bc39bf\nINFO  : Total jobs = 1\nINFO  : Starting task [Stage-4:MAPREDLOCAL] in serial mode\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "id\tname\tamount\tdate\n3\tkaushik\t3000.0\t2009-10-08 00:00:00.0\n3\tkaushik\t1500.25\t2009-10-08 00:00:00.0\n2\tKhilan\t1560.0\t2009-11-20 00:00:00.0\n4\tChaitali\t2060.5\t2008-05-20 00:00:00.0\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc(hive)\n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE`\nFROM CUSTOMERS c \nFULL OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID);\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T16:03:08+0530",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "title": true,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "name": "string",
+                      "amount": "string",
+                      "date": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "HIVE JOB",
+          "tooltip": "View in YARN WEB UI",
+          "group": "jdbc",
+          "values": [
+            {
+              "jobUrl": "http://quickstart-bigdata:8088/proxy/application_1639276645913_0007/",
+              "$$hashKey": "object:4649"
+            }
+          ],
+          "interpreterSettingId": "jdbc"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639305058814_1717047917",
+      "id": "paragraph_1639305058814_1717047917",
+      "dateCreated": "2021-12-12T16:00:58+0530",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:3543",
+      "dateFinished": "2021-12-12T16:03:08+0530",
+      "dateStarted": "2021-12-12T16:02:48+0530",
+      "title": "FULL OUTER JOIN",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20211212160248_eb107820-080e-462d-ba11-f5657fca9016): \n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE`\nFROM CUSTOMERS c \nFULL OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nINFO  : Semantic Analysis Completed\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:c.id, type:int, comment:null), FieldSchema(name:c.name, type:string, comment:null), FieldSchema(name:o.amount, type:float, comment:null), FieldSchema(name:o.date, type:timestamp, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20211212160248_eb107820-080e-462d-ba11-f5657fca9016); Time taken: 0.06 seconds\nINFO  : Executing command(queryId=hive_20211212160248_eb107820-080e-462d-ba11-f5657fca9016): \n\nSELECT c.ID, c.NAME, o.AMOUNT, o.`DATE`\nFROM CUSTOMERS c \nFULL OUTER JOIN ORDERS o \nON (c.ID = o.CUSTOMER_ID)\nWARN  : \nINFO  : Query ID = hive_20211212160248_eb107820-080e-462d-ba11-f5657fca9016\nINFO  : Total jobs = 1\nINFO  : Launching Job 1 out of 1\nINFO  : Starting task [Stage-1:MAPRED] in serial mode\nINFO  : Number of reduce tasks not specified. Estimated from input data size: 1\nINFO  : In order to change the average load for a reducer (in bytes):\nINFO  :   set hive.exec.reducers.bytes.per.reducer=<number>\nINFO  : In order to limit the maximum number of reducers:\nINFO  :   set hive.exec.reducers.max=<number>\nINFO  : In order to set a constant number of reducers:\nINFO  :   set mapreduce.job.reduces=<number>\nINFO  : number of splits:2\nINFO  : Submitting tokens for job: job_1639276645913_0007\nINFO  : Executing with tokens: []\nINFO  : The url to track the job: http://quickstart-bigdata:8088/proxy/application_1639276645913_0007/\nINFO  : Starting Job = job_1639276645913_0007, Tracking URL = http://quickstart-bigdata:8088/proxy/application_1639276645913_0007/\nINFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1639276645913_0007\nINFO  : Hadoop job information for Stage-1: number of mappers: 2; number of reducers: 1\nINFO  : 2021-12-12 16:02:54,501 Stage-1 map = 0%,  reduce = 0%\nINFO  : 2021-12-12 16:02:59,740 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 4.36 sec\nINFO  : 2021-12-12 16:03:05,910 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.93 sec\nINFO  : MapReduce Total cumulative CPU time: 6 seconds 930 msec\nINFO  : Ended Job = job_1639276645913_0007\nINFO  : MapReduce Jobs Launched: \nINFO  : Stage-Stage-1: Map: 2  Reduce: 1   Cumulative CPU: 6.93 sec   HDFS Read: 16313 HDFS Write: 390 HDFS EC Read: 0 SUCCESS\nINFO  : Total MapReduce CPU Time Spent: 6 seconds 930 msec\nINFO  : Completed executing command(queryId=hive_20211212160248_eb107820-080e-462d-ba11-f5657fca9016); Time taken: 19.732 seconds\nINFO  : OK\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "id\tname\tamount\tdate\n1\tRamesh\tnull\tnull\n2\tKhilan\t1560.0\t2009-11-20 00:00:00.0\n3\tkaushik\t1500.25\t2009-10-08 00:00:00.0\n3\tkaushik\t3000.0\t2009-10-08 00:00:00.0\n4\tChaitali\t2060.5\t2008-05-20 00:00:00.0\n5\tHardik\tnull\tnull\n6\tKomal\tnull\tnull\n7\tMuffy\tnull\tnull\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%jdbc\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-12-12T16:02:48+0530",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1639305168180_901626606",
+      "id": "paragraph_1639305168180_901626606",
+      "dateCreated": "2021-12-12T16:02:48+0530",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:3884"
+    }
+  ],
+  "name": "hive-joins-types",
+  "id": "2GQEU54D9",
+  "defaultInterpreterGroup": "jdbc",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/hive-joins-types"
+}
