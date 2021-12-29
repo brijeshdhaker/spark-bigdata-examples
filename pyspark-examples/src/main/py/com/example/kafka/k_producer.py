@@ -30,10 +30,10 @@ import json
 if __name__ == '__main__':
 
     # Read arguments and configurations and initialize
-    topic = "test"
+    topic = "test-topic"
     # Create Producer instance
     producer_conf = {
-        'bootstrap.servers': 'localhost:19092',
+        'bootstrap.servers': 'quickstart-bigdata:9092',
     }
     producer = Producer(producer_conf)
     # Create topic if needed
@@ -71,3 +71,4 @@ if __name__ == '__main__':
     producer.flush()
 
     print("{} messages were produced to topic {}!".format(delivered_records, topic))
+

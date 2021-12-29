@@ -99,3 +99,20 @@ structureData = [
     (("James", "", "Smith"), "36636", "Sales", 34, "2006-01-01", "true", ["Java", "Scala", "C++"], {'hair': 'black', 'eye': 'brown'}, "M", 3100.50, "OH", "07-01-2019 12 01 19 406"),
     (("Scott", "M", "Brown"), "39194", "Marketing", 24, "1994-10-01", "false", ["Python", "Scala", "C++"], {'hair': 'black', 'eye': 'brown'}, "F", -1, None, "11-16-2019 16 50 59 406")
 ]
+
+
+#
+#
+
+product_revenue = [
+    ("Thin",       "cell phone", 6000),
+    ("Normal",     "tablet",     1500),
+    ("Mini",       "tablet",     5500),
+    ("Ultra thin", "cell phone", 5000),
+    ("Very thin",  "cell phone", 6000),
+    ("Big",        "tablet",     2500),
+    ("Bendable",   "cell phone", 3000),
+    ("Foldable",   "cell phone", 3000),
+    ("Pro",        "tablet",     4500),
+    ("Pro2",       "tablet",     6500)
+]

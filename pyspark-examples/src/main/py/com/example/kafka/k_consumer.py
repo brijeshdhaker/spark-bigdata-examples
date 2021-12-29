@@ -2,12 +2,12 @@ from confluent_kafka import Consumer
 
 
 c = Consumer({
-    'bootstrap.servers': 'localhost:19092',
+    'bootstrap.servers': 'quickstart-bigdata:9092',
     'group.id': 'python-cg',
     'auto.offset.reset': 'earliest'
 })
 
-c.subscribe(["test"])
+c.subscribe(["test-topic"])
 
 while True:
     msg = c.poll(1.0)
