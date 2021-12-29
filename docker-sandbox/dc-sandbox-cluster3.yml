@@ -208,7 +208,7 @@ services:
   # Hbase Server
   #
   hbase-master:
-    image: brijeshdhaker/hbase-master:2.4.6
+    image: brijeshdhaker/hbase-master:2.4.9
     hostname: hbase-master
     container_name: hbase-master
     environment:
@@ -216,13 +216,14 @@ services:
     env_file:
       - hbase-distributed.env
     ports:
+      - 16000:16000
       - 16010:16010
     volumes:
       - "/apps/hostpath:/apps/hostpath"
 
   #
   hbase-region:
-    image: brijeshdhaker/hbase-regionserver:2.4.6
+    image: brijeshdhaker/hbase-regionserver:2.4.9
     container_name: hbase-regionserver
     hostname: hbase-regionserver
     env_file:
@@ -235,6 +236,7 @@ services:
       - 16030:16030
     volumes:
       - "/apps/hostpath:/apps/hostpath"
+
 
   #
   # Zeppelin Notebook
@@ -250,9 +252,9 @@ services:
     volumes:
       - /apps/hostpath:/apps/hostpath
       - /opt/sandbox/hadoop-3.2.1:/opt/hadoop-3.2.1
+      - /opt/sandbox/hbase-2.4.9:/opt/hbase-2.4.9
       - /opt/sandbox/hive-3.1.2:/opt/hive-3.1.2
       - /opt/sandbox/spark-3.1.2:/opt/spark-3.1.2
-      - /opt/sandbox/hbase-2.4.6:/opt/hbase-2.4.6
 
 #
 networks:

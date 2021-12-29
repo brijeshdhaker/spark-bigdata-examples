@@ -1,0 +1,17 @@
+{
+	"device_id": 198164,
+	"device_name": "sensor-pad-198164owomcJZ",
+	"ip": "80.55.20.25",
+	"cca2": "PL",
+	"cca3": "POL",
+	"cn": "Poland",
+	"latitude": 53.080000,
+	"longitude": 18.620000,
+	"scale": "Celsius",
+	"temp": 21,
+	"humidity": 65,
+	"battery_level": 8,
+	"c02_level": 1408,
+	"lcd": "red",
+	"timestamp": 1458081226051
+}
