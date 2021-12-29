@@ -1,6 +1,7 @@
+#
 from pyspark import SparkContext, SparkConf
 
-
+#
 conf = SparkConf().setAppName("SparkRDD-distinct").setMaster("local[*]")
 sc = SparkContext.getOrCreate(conf=conf)
 

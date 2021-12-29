@@ -1,8 +1,8 @@
-import src.utils.commons as commons
-import sys
 #
+import sys
+import com.example.utils.commons as commons
 from pyspark.sql import SparkSession
-from src.data.sampledata import t_key_numbers
+from com.example.data.sampledata import t_key_numbers
 
 if __name__ == "__main__":
     if len(sys.argv) != 1:

@@ -1,6 +1,7 @@
-import sys
-import src.utils.commons as commons
 #
+import sys
+import com.example.utils.commons as commons
+
 from pyspark.sql import SparkSession
 
 if __name__ == "__main__":

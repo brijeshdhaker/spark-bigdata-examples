@@ -1,10 +1,8 @@
 #
 #
 from pyspark import SparkConf, SparkContext
-
+import com.example.utils.commons as commons
 #
-#
-from src.utils import commons
 
 sparkconf = SparkConf().setAppName("PySpark-Test").setMaster("local[*]")
 sc = SparkContext.getOrCreate(conf=sparkconf)

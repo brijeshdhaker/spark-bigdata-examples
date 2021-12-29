@@ -1,8 +1,9 @@
-from pyspark.sql import SparkSession
-
+#
 # Importing Python Related Packages
 import time
+from pyspark.sql import SparkSession
 
+#
 if __name__ == "__main__":
     print("PySpark Examples")
 

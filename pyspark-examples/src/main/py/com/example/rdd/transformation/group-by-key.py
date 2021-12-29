@@ -1,9 +1,9 @@
-import src.utils.commons as commons
 import sys
-from src.data.sampledata import t_key_values
-#
+import com.example.utils.commons as commons
+from com.example.data.sampledata import t_key_values
 from pyspark.sql import SparkSession
 
+#
 if __name__ == "__main__":
     if len(sys.argv) != 1:
         print("Usages: spark-file <in-path> <out-path>")

@@ -1,5 +1,5 @@
+#
 from pyspark import SparkContext, SparkConf
-
 
 conf = SparkConf().setAppName("SparkRDD-distinct").setMaster("local[*]")
 sc = SparkContext.getOrCreate(conf=conf)
@@ -15,6 +15,7 @@ print("RDD-2 Partition Count : %i " % (rdd_2.getNumPartitions()))
 print("RDD-2 Record Count : %i " % (rdd_2.count()))
 
 # print
-rdd_2.foreach(lambda x : print(x))
+for e in rdd_2.collect(): print(e)
 
+#
 sc.stop()

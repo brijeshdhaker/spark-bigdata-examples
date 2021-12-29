@@ -1,5 +1,5 @@
 import sys
-import src.utils.commons as commons
+import com.example.utils.commons as commons
 #
 from pyspark.sql import SparkSession
 

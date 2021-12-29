@@ -1,8 +1,9 @@
-import src.utils.commons as commons
-import sys
 #
+import sys
+import com.example.utils.commons as commons
 from pyspark.sql import SparkSession
 
+#
 if __name__ == "__main__":
     if len(sys.argv) != 1:
         print("Usages: spark-file <in-path> <out-path>")
