@@ -1,4 +1,4 @@
-import src.utils.commons as commons
+import com.example.utils.commons as commons
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit, col
