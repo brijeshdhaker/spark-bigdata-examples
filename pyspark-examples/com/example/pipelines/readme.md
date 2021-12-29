@@ -6,7 +6,7 @@ The application will read the messages as posted and count the frequency of word
 This will then be updated in the Cassandra table we created earlier.
 
 Let's quickly visualize how the data will flow:
-![](image/Simple-Data-Pipeline-1.jpg)
+![](../../../../images/Simple-Data-Pipeline-1.jpg)
 #
 
 #

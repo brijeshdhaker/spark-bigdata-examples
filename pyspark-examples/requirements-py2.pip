@@ -1,9 +1,11 @@
-jellyfish
+jellyfish==0.6.1
 kafka-python==2.0.2
-confluent-kafka[avro,json,protobuf]==1.4.0
-avro==1.10.0
-fastavro==0.22.13
+#confluent-kafka[avro,json,protobuf]==1.4.0
+confluent-kafka==1.7.0
+avro==1.10.2
+fastavro==0.24.2
 jsonschema
 protobuf
 requests
 certifi
+matplotlib==2.2.5

@@ -74,7 +74,7 @@ WHERE
 rank <= 2
 ```
 
-```scala
+```
 import org.apache.spark.sql.expressions.Window
 val overCategory = Window.partitionBy('category).orderBy('revenue.desc)
 val ranked = data.withColumn("rank", dense_rank.over(overCategory))

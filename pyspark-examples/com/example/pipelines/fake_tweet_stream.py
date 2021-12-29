@@ -5,7 +5,7 @@ from random import randint
 from time import sleep
 import sys
 
-BROKER = 'localhost:19092'
+BROKER = 'quickstart-bigdata:9092'
 TOPIC = 'tweeter-tweets'
 
 WORD_FILE = '/usr/share/dict/words'
