@@ -253,7 +253,7 @@ services:
       - /opt/sandbox/hbase-2.4.9:/opt/hbase-2.4.9
       - /opt/sandbox/hive-3.1.2:/opt/hive-3.1.2
       - /opt/sandbox/spark-3.1.2:/opt/spark-3.1.2
-
+      - /apps/hostpath/zeppelin/conf:/opt/zeppelin/conf
 #
 networks:
   default:

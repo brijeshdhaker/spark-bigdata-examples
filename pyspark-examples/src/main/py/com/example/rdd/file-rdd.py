@@ -1,8 +1,5 @@
 import math
-
-import findspark
 import re
-findspark.init('/apps/spark')
 import pyspark
 
 COMMA_DELIMITER = ',(?=([^"]*"[^"]*")*[^"]*$)'
@@ -26,13 +23,13 @@ def myFilter(x):
 
 sc = pyspark.SparkContext(appName="spark-rdd")
 
-rdd_1 = sc.textFile("file:///apps/hostpath/spark/in/airports.text")
+rdd_1 = sc.textFile("file:///apps/hostpath/datasets/airports.text")
 ps = rdd_1.getNumPartitions()
 print("Partition Size : " + str(ps))
 # rdd_2 = rdd_1.map(lambda x: x.replace('"', ''))
 rdd_3 = rdd_1.filter(lambda x: myFilter(x))
 rdd_4 = rdd_3.map(lambda x: myFun(x))
-rdd_4.foreach(lambda x: print(x))
+for e in rdd_4.collect(): print(e)
 
 total = rdd_4.count()
 print(total)
