@@ -1,5 +1,9 @@
-.idea
+#
+#
 venv
-*.iml
-*.jar
 target
+
+#
+#
+*.zip
+*.jar

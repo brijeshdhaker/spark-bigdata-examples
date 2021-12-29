@@ -14,16 +14,14 @@ spark = SparkSession \
 import sys
 from pyspark.sql.window import Window
 import pyspark.sql.functions as func
-windowSpec = \
-    Window
-.partitionBy(df['category']) \
-    .orderBy(df['revenue'].desc()) \
-    .rangeBetween(-sys.maxsize, sys.maxsize)
 
+#
+windowSpec = Window.partitionBy(df['category']).orderBy(df['revenue'].desc()).rangeBetween(-sys.maxsize, sys.maxsize)
+
+#
 dataFrame = sqlContext.table("productRevenue")
 
-revenue_difference = \
-    (func.max(dataFrame['revenue']).over(windowSpec) - dataFrame['revenue'])
+revenue_difference = (func.max(dataFrame['revenue']).over(windowSpec) - dataFrame['revenue'])
 
 dataFrame.select(
     dataFrame['product'],
