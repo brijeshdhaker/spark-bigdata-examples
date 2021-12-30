@@ -247,6 +247,7 @@ services:
       - zeppelin-hadoop-3.2.1.env
     ports:
       - "9080:8080"
+      - "4040:4040"
     volumes:
       - /apps/hostpath:/apps/hostpath
       - /opt/sandbox/hadoop-3.2.1:/opt/hadoop-3.2.1
