@@ -260,12 +260,22 @@ To save time for building hbase-connector project, you can download it from the 
 ### 1. copy hbase-site.xml to $SPARK_HOME/conf/ directory
 
    cp /usr/hdp/current/hbase-client/conf/hbase-site.xml spark2-client/conf/hbase-site.xml
+#  export SPARK_CLASSPATH=/usr/hdp/current/hbase-client/lib/hbase-common.jar:/usr/hdp/current/hbase-client/lib/hbase-client.jar:/usr/hdp/current/hbase-client/lib/hbase-server.jar:/usr/hdp/current/hbase-client/lib/hbase-protocol.jar:/usr/hdp/current/hbase-client/lib/guava-12.0.1.jar
 
 ### 2. 
 
    pyspark --packages com.hortonworks:shc-core:1.1.1-2.1-s_2.11 --repositories http://repo.hortonworks.com/content/groups/public/ --files /usr/hdp/current/hbase-master/conf/hbase-site.xml
 
    pyspark --packages com.hortonworks:shc-core:1.1.1-2.1-s_2.11 --repositories http://repo.hortonworks.com/content/groups/public/ --files /opt/sandbox/hbase-2.4.9/conf/hbase-site.xml
+
+   <dependency>
+     <groupId>com.hortonworks</groupId>
+     <artifactId>shc-core</artifactId>
+     <version>1.1.3-2.4-s_2.11</version>
+   </dependency>
+
+   $SPARK_HOME/bin/pyspark --packages com.hortonworks:shc-core:1.1.3-2.4-s_2.11 --repositories http://repo.hortonworks.com/content/groups/public/ --files /opt/sandbox/hbase-2.4.9/conf/hbase-site.xml
+
 
 ### 3. Define Catalog for Hbase Table
    

@@ -14,7 +14,7 @@ spark = SparkSession \
     .appName("PysparkSQL-Columns") \
     .config(conf=conf) \
     .getOrCreate()
-
+spark.sparkContext.master
 spark.sparkContext.setLogLevel("ERROR")
 
 #

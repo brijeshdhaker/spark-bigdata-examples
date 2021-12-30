@@ -73,6 +73,9 @@ put 'transaction_detail_hbase_tbl','5','customer_data:transaction_country_name',
 
 $ beeline -u jdbc:hive2://quickstart-bigdata:10000 scott tiger
 0: jdbc:hive2://quickstart-bigdata:10000> 
+
+drop table transaction_detail_hive_tbl;
+
 CREATE EXTERNAL TABLE transaction_detail_hive_tbl(
     transaction_id int, 
     transaction_card_type string, 

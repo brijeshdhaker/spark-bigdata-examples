@@ -254,8 +254,8 @@ services:
       - /opt/sandbox/hive-3.1.2:/opt/hive-3.1.2
       - /opt/sandbox/spark-3.1.2:/opt/spark-3.1.2
       - /apps/hostpath/zeppelin/sandbox3/conf:/opt/zeppelin/conf
-      - /apps/hostpath/zeppelin/.m2:/opt/zeppelin/.m2
-      - /apps/hostpath/zeppelin/.ivy2:/opt/zeppelin/.ivy2
+      - /apps/hostpath/.m2:/opt/zeppelin/.m2
+      - /apps/hostpath/.ivy2:/opt/zeppelin/.ivy2
 #
 networks:
   default:

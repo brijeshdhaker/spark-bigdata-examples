@@ -279,10 +279,10 @@ services:
       - /opt/sandbox/hadoop-2.10.1:/opt/hadoop-2.10.1
       - /opt/sandbox/hbase-2.4.9:/opt/hbase-2.4.9
       - /opt/sandbox/hive-2.3.9:/opt/hive-2.3.9
-      - /opt/sandbox/spark-2.4.8:/opt/spark-2.4.8
+      - /opt/sandbox/spark-2.3.4:/opt/spark-2.3.4
       - /apps/hostpath/zeppelin/sandbox2/conf:/opt/zeppelin/conf
-      - /apps/hostpath/zeppelin/.m2:/opt/zeppelin/.m2
-      - /apps/hostpath/zeppelin/.ivy2:/opt/zeppelin/.ivy2
+      - /apps/hostpath/.m2:/opt/zeppelin/.m2
+      - /apps/hostpath/.ivy2:/opt/zeppelin/.ivy2
 
 #
 volumes:

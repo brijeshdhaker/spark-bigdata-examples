@@ -17,6 +17,8 @@ object InnerJoinExample {
       .appName("InnerJoinExample")
       .getOrCreate()
 
+
+
     val employee = Seq(
       (101,"Chloe",-1,"2018",8,"M",3000),
       (102,"Paul",101,"2010",3,"M",4000),
