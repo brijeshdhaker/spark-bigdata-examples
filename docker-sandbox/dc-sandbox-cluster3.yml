@@ -75,6 +75,7 @@ services:
       - "/apps/hostpath/cassandra/data:/var/lib/cassandra"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+
   #
   # HDFS & YARN Sandbox
   #

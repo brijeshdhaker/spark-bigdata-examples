@@ -63,6 +63,20 @@ services:
       - 3306:3306
 
   #
+  # Cassandra Server
+  #
+  cassandra:
+    image: cassandra:latest
+    hostname: cassandra
+    container_name: cassandra
+    ports:
+      - "7000:7000"
+    volumes:
+      - "/apps/hostpath/cassandra/data:/var/lib/cassandra"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  #
   # HDFS & YARN Sandbox
   #
   namenode:
