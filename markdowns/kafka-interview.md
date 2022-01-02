@@ -2,7 +2,7 @@
 
 ```commandline
 +———------———-------+——---——-----——-----——-----——-------——----——-----——-----——-----——------——-----——-----——------------+——-----——-------——----——-----——-----——-----——------——-----——-----——------------——-----——----+
-|  #                |  e_id                                                                                            |                                                                                            |
+|  #                |  RabbitMQ                                                                                        |  Kafka                                                                                     |
 +———------———-------+——---——-----——-----——-----——-------——----——-----——-----——-----——------——-----——-----——------------+——-----——-------——----——-----——-----——-----——------——-----——-----——------------——-----——----+
 |  Origion          |  Apache Open Source                                                                              | Linked In                                                                                  |
 |  Design           |  Smart broker / dumb consumer model,                                                             | Kafka employs a dumb broker and uses smart consumers                                       |
@@ -14,6 +14,25 @@
 |  Routing rules    |  supports complex routing rules and keeps tracks of message states – consumed, acknowledged etc. | Kafka takes a simple routing approach                                                      |
 +———------+——-------+——---——-----——-----——-----——-------——----——-----——-----——-----——------——-----——-----——------------+——-----——-------——----——-----——-----——-----——------——-----——-----——------------——-----——----+
 ```
+
+## Schema Evolution in Kafka
+
+|          Type       | Produce By  | Consume By  |                                                                                                                                                                                       |                                                                                                                                   |
+|:--------------------|:------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|
+| Backward            | X+2         | X+2, X+1    | A schema is considered BACKWARD compatible if a consumer who is able to consume the data produced by new schema will also be able to consume the data produced by the current schema. | ![](https://www.hadoopinrealworld.com/wp-content/uploads/2020/01/Backward-compatiblity-type-no-default-value-1.png)               |
+| Backward Transitive | X+2         | X+2, X+1, X |                                                                                                                                                                                       | ![](https://www.hadoopinrealworld.com/wp-content/uploads/2020/01/Backward-Transitive.png)                                         |
+| Forward             | x+2, x+1    | X+1         | A schema is considered FORWARD compatible if a consumer consuming data produced by the current schema will also be able to consume data produced by the new schema.                   | ![](https://www.hadoopinrealworld.com/wp-content/uploads/2020/01/Kafka-Schema-Registry-Forward-Compatibility-Type.png)            |
+| Forward Transitive  | x+2, x+1, x | x+1         |                                                                                                                                                                                       | ![](https://www.hadoopinrealworld.com/wp-content/uploads/2020/01/Forward-Transitive-Compatibility-Type-Kafka-Schema-Registry.png) |
+
+
+
+* A
+* B
+* C
+
+1. A
+2. 2
+3. 3
 
 
 #### 1. What is the Retention Period in Kafka Topic ?
@@ -62,5 +81,7 @@ Key differences:
 Due to above efficiencies, Kafka throughput is more than normal messaging systems like ActiveMQ and RabbitMQ.
 
 ####
+```
 kafka-configs --zookeeper <zkhost>:2181 --describe --entity-type topics --entity-name <topic name>
 kafka-configs.sh --zookeeper <zkhost>:2181 --entity-type topics --alter --entity-name <topic name> --add-config retention.ms=10000
+```
