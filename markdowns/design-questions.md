@@ -1,11 +1,10 @@
 #
 # What exactly is big data?
 The definition of big data is data that contains greater variety, arriving in increasing volumes and with more velocity. This is also known as the three Vs.
-![big_data](../images/bigdata_vs.png)
 
-#
-### What is the Architectural Pattern of Big Data?
-![](../images/xenonstack-big-data-framework-ingestion.webp)
+Two more Vs have emerged over the past few years: value and veracity. Data has intrinsic value. But it’s of no use until that value is discovered. Equally important: How truthful is your data—and how much can you rely on it?
+
+![big_data](../images/bigdata_vs.png)
 
 ### Big data benefits:
 * Big data makes it possible for you to gain more complete answers because you have more information.
@@ -16,6 +15,10 @@ The definition of big data is data that contains greater variety, arriving in in
 * **Skillset** Clean data, or data that’s relevant to the client and organized in a way that enables meaningful analysis, requires a lot of work. Data scientists spend 50 to 80 percent of their time curating and preparing data before it can actually be used.
 * **Technology maturity** Finally, big data technology is changing at a rapid pace. A few years ago, Apache Hadoop was the popular technology used to handle big data. Then Apache Spark was introduced in 2014. Today, a combination of the two frameworks appears to be the best approach. Keeping up with big data technology is an ongoing challenge.
 * **Security** Big data solutions usually rely on storing all static data in a centralized data lake. Securing access to this data can be challenging, especially when the data must be ingested and consumed by multiple applications and platforms.
+
+#
+### What is the Architectural Pattern of Big Data?
+![](../images/xenonstack-big-data-framework-ingestion.webp)
 
 ### Big data architecture style ..?
 ![big_data](../images/big-data-logical.svg)
@@ -35,8 +38,7 @@ Big data solutions typically involve one or more of the following types of workl
 * Power your Data Ingestion and Integration tools.
 
 #
-### What is the Lambda Architecture : 
-# 
+### What is the Lambda Architecture :
 Lambda architecture is a data-processing architecture designed to handle massive quantities of data by taking advantage of both batch and stream-processing methods. 
 This approach to architecture attempts to balance latency, throughput, and fault-tolerance by using batch processing to provide comprehensive and accurate views 
 of batch data, while simultaneously using real-time stream processing to provide views of online data.
@@ -45,7 +47,6 @@ of batch data, while simultaneously using real-time stream processing to provide
 
 #
 ### What is the Kappa Architecture :
-# 
 A drawback to the lambda architecture is its complexity. Processing logic appears in two different places — the cold and hot paths — using different frameworks. This leads to duplicate computation logic and the complexity of managing the architecture for both paths.
 
 The kappa architecture was proposed by Jay Kreps as an alternative to the lambda architecture. It has the same basic goals as the lambda architecture, but with an important distinction: All data flows through a single path, using a stream processing system.
