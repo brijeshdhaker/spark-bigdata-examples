@@ -1,8 +1,7 @@
 
 ### Schema Evaluation and mergeSchema option in Spark with a sample pyspark code.
 
-![](image/schema-merge.png)
-
+![](../../../../../../../images/schema-merge.png)
 
 #### Version 1
 ```

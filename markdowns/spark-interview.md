@@ -79,7 +79,7 @@ Better load balancing and resource usage
 Combining of streaming data with static datasets and interactive queries
 Native integration with advanced processing libraries (SQL, machine learning, graph processing)
 
-![](images/Apache-Spark-Streaming-ecosystem-diagram.png)
+![](../images/Apache-Spark-Streaming-ecosystem-diagram.png)
 
 
 #### 

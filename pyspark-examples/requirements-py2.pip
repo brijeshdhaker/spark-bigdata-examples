@@ -1,5 +1,7 @@
 jellyfish==0.6.1
 kafka-python==2.0.2
+requests
+certifi
 #confluent-kafka[avro,json,protobuf]==1.4.0
 confluent-kafka==1.7.0
 avro==1.10.2

@@ -24,5 +24,5 @@ There are plenty of misconceptions around what it means to be cloud native. Perh
 #### 
 Microservices architecture is the evolution of Services Oriented Architecture (SOA), and can be defined like "… an autonomous software service which is built to perform a single, specific, and granular task
 The API Gateway is the entry point for a client, when a client request for a service the API Gateway receive the request and call the appropriated Microservice, decoupling the client and the services used in fact.
-![Lambda Architecture](images/Microservices-architecture-Image-taken-from.ppm)
+![Micro Service Architecture](../images/Microservices-architecture-Image-taken-from.ppm)
 
