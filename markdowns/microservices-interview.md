@@ -1,3 +1,13 @@
+### What is Service-Oriented Architecture ?
+Service-Oriented Architecture (SOA) is a stage in the evolution of application development and/or integration. It defines a way to make software components reusable using the interfaces.
+Formally, SOA is an architectural approach in which applications make use of services available in the network. In this architecture, services are provided to form applications, through a network call over the internet. It uses common communication standards to speed up and streamline the service integrations in applications. Each service in SOA is a complete business function in itself. The services are published in such a way that it makes it easy for the developers to assemble their apps using those services. Note that SOA is different from microservice architecture.
+
+SOA allows users to combine a large number of facilities from existing services to form applications.
+SOA encompasses a set of design principles that structure system development and provide means for integrating components into a coherent and decentralized system.
+SOA-based computing packages functionalities into a set of interoperable services, which can be integrated into different software systems belonging to separate business domains.
+There are two major roles within Service-oriented Architecture:
+
+![SOA](../images/Screenshot-245.png)
 
 ### What does it mean to be cloud native?
 
@@ -7,7 +17,7 @@ This is true. However, being cloud native actually encompasses a whole lot more 
 
 There are plenty of misconceptions around what it means to be cloud native. Perhaps you’ve heard that you need to use containers to be cloud native or to use AWS? Neither is necessary, though there are plenty of use cases where they make sense.
 
-#### What is 12-factor app design ?
+### What is 12-factor app design ?
 1. Codebase
 2. Dependencies
 3. Config
@@ -20,13 +30,13 @@ There are plenty of misconceptions around what it means to be cloud native. Perh
 10. Dev/prod parity
 11. Logs
 12. Admin processes
+#
+### What are microservices ?
 
-#### 
 Microservices architecture is the evolution of Services Oriented Architecture (SOA), and can be defined like "… an autonomous software service which is built to perform a single, specific, and granular task
 The API Gateway is the entry point for a client, when a client request for a service the API Gateway receive the request and call the appropriated Microservice, decoupling the client and the services used in fact.
 ![Micro Service Architecture](../images/Microservices-architecture-Image-taken-from.ppm)
 
-### What are microservices?
 Microservices are small, independent, and loosely coupled. A single small team of developers can write and maintain a service.
 
 Each service is a separate codebase, which can be managed by a small development team.
@@ -84,4 +94,44 @@ Keep domain knowledge out of the gateway. The gateway should handle and route cl
 Services should have loose coupling and high functional cohesion. Functions that are likely to change together should be packaged and deployed together. If they reside in separate services, those services end up being tightly coupled, because a change in one service will require updating the other service. Overly chatty communication between two services may be a symptom of tight coupling and low cohesion.
 
 Isolate failures. Use resiliency strategies to prevent failures within a service from cascading. See Resiliency patterns and Designing reliable applications.
+
+### What is a distributed transaction ?
+When a Put Order request comes from the user, both microservices will be called to apply changes into their own database. Because the transaction is now across multiple databases, it is now considered a distributed transaction.
+
+![ms_distributed_transaction](../images/ms_distributed_transaction.png)
+
+### What are Approaches for Microservice Transaction Management ?
+* **2pc (two-phase commit)**
+* **Saga**
+
+### Explain Two-phase commit (2pc) pattern 
+2pc has two phases: A prepare phase and a commit phase. In the prepare phase, all microservices will be asked to prepare for some data change that could be done atomically. Once all microservices are prepared, the commit phase will ask all the microservices to make the actual changes.
+Normally, there needs to be a global coordinator to maintain the lifecycle of the transaction, and the coordinator will need to call the microservices in the prepare and commit phases.
+Here is a 2pc implementation for the customer order example:
+
+![ms_two_phase_commit](../images/ms_two_phase_commit.png)
+
+Here is a diagram of a 2pc rollback for the customer order example:
+
+![ms_two_phase_rollback](../images/ms_two_phase_rollback.png)
+
+
+### Explain SAGA pattern 
+The Saga pattern is another widely used pattern for distributed transactions. It is different from 2pc, which is synchronous. The Saga pattern is asynchronous and reactive. In a Saga pattern, the distributed transaction is fulfilled by asynchronous local transactions on all related microservices. The microservices communicate with each other through an event bus.
+Here is a diagram of the Saga pattern for the customer order example:
+
+![ms_saga_commit](../images/ms_saga_commit.png)
+
+![ms_saga_rollback](../images/ms_saga_rollback.png)
+
+In the above example, the UpdateCustomerFund failed for some reason and it then emitted a CustomerFundUpdateFailed event. The OrderMicroservice listens for the event and start its compensation transaction to revert the order that was created.
+
+#### Advantages of the Saga pattern
+One big advantage of the Saga pattern is its support for long-lived transactions. Because each microservice focuses only on its own local atomic transaction, other microservices are not blocked if a microservice is running for a long time. This also allows transactions to continue waiting for user input. Also, because all local transactions are happening in parallel, there is no lock on any object.
+
+#### Disadvantages of the Saga pattern
+The Saga pattern is difficult to debug, especially when many microservices are involved. Also, the event messages could become difficult to maintain if the system gets complex. Another disadvantage of the Saga pattern is it does not have read isolation. For example, the customer could see the order being created, but in the next second, the order is removed due to a compensation transaction.
+Adding a process manager : To address the complexity issue of the Saga pattern, it is quite normal to add a process manager as an orchestrator. The process manager is responsible for listening to events and triggering endpoints.
+
+
 
