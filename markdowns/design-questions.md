@@ -18,6 +18,13 @@ Two more Vs have emerged over the past few years: value and veracity. Data has i
 
 #
 ### What is the Architectural Pattern of Big Data?
+* Data Ingestion Layer
+* Data Collector Layer
+* Data Processing Layer
+* Data Storage Layer
+* Data Query Layer
+* Data Visualization Layer
+
 ![](../images/xenonstack-big-data-framework-ingestion.webp)
 
 ### Big data architecture style ..?

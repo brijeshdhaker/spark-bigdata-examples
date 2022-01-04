@@ -1,4 +1,4 @@
-#### 1. Suppose you have a spark dataframe which contains millions of records. You need to perform multiple actions on it. How will you minimize the execution time?
+### 1. Suppose you have a spark dataframe which contains millions of records. You need to perform multiple actions on it. How will you minimize the execution time?
 Answer : You can use cache or persist. For eg say you have dataframe df and if you use df1=df.cache() ,then df1 will be stored in its storage. once it is stored in its storage, multiple actions can be performed. Only first action will take longer time than others because on the first action, it actually caches the data. You can check the storage size of df1 from spark application tracker.
 
 You can pass different storage level in persist.
@@ -9,7 +9,7 @@ MEMORY_AND_DISK
 MEMORY_ONLY_SER
 MEMORY_AND_DISK_SER
 
-#### 2. If your cluster have limited resources, and there are many applications which need to be run, how would you ensure that your spark application will take the fixed number of resource and hence does not impact execution of other applications?
+### 2. If your cluster have limited resources, and there are many applications which need to be run, how would you ensure that your spark application will take the fixed number of resource and hence does not impact execution of other applications?
 Answer : While submitting the spark application pass these two parameters .
 
 –num-executors 10
@@ -17,10 +17,10 @@ Answer : While submitting the spark application pass these two parameters .
 
 Note: you can change the number of executors if you need.
 
-#### 3.How would you check if rdd is empty, without using collect?
+### 3.How would you check if rdd is empty, without using collect?
 Answer : You can use rdd.isEmpty ,it will return true if rdd is empty.
 
-#### 4. There is a json file with following content :-
+### 4. There is a json file with following content :-
 {“dept_id”:101,”e_id”:[10101,10102,10103]}
 {“dept_id”:102,”e_id”:[10201,10202]}
 
@@ -46,23 +46,18 @@ So output would look like
 +———------+——-----+
 ```
 
-#### Q2 . How many number of column will be present in the df2, if df1 have three columns a1,a2,a3
+### Q2 . How many number of column will be present in the df2, if df1 have three columns a1,a2,a3
 Var df2=df.withColumn(“b1”,lit(“a1”)).withColumn(“a1”,lit(“a2”)).withColumn(“a2”,$“a2”).withColumn(“b2”,$”a3”)).withColumn(“a3”,lit(“b1”))
-
 Answer :
 Total 5 As below
-
 Df // a1,a2,a3
-
 df.withColumn(“b1”,lit(“a1”)) //a1,a2,a3,b1
 .withColumn(“a1”,lit(“a2”)) //a1,a2,a3,b1
 .withColumn(“a2”,$“a2”) //a1,a2,a3,b1
 .withColumn(“b2”,$”a3”))//a1,a2,a3,b1,b2
 .withColumn(“a3”,lit(“b1”))//a1,a2,a3,b1,b2
 
-
-
-####  Q3 . How to get RDD with its element indices.
+###  Q3 . How to get RDD with its element indices.
 Say myrdd = (a1,b1,c1,s2,s5)
 Output should be ((a1,0),(b1,1),(c1,2),(s2,3),(s5,4))
 Answer : we can use zipWithIndex function
@@ -70,22 +65,25 @@ Answer : we can use zipWithIndex function
 var myrdd_windx = myrdd.zipWithIndex()
 ```
 
-#### Q4. What is Spark Streaming?
+### Q4. What is Spark Streaming?
 Apache Spark Streaming is a scalable fault-tolerant streaming processing system that natively supports both batch and streaming workloads. Spark Streaming is an extension of the core Spark API that allows data engineers and data scientists to process real-time data from various sources including (but not limited to) Kafka, Flume, and Amazon Kinesis.
-
-Four Major Aspects of Spark Streaming
-Fast recovery from failures and stragglers
-Better load balancing and resource usage
-Combining of streaming data with static datasets and interactive queries
-Native integration with advanced processing libraries (SQL, machine learning, graph processing)
+* Four Major Aspects of Spark Streaming
+* Fast recovery from failures and stragglers
+* Better load balancing and resource usage
+* Combining of streaming data with static datasets and interactive queries
+* Native integration with advanced processing libraries (SQL, machine learning, graph processing)
 
 ![](../images/Apache-Spark-Streaming-ecosystem-diagram.png)
 
+### Q. Explain Spark DStream
+![](../images/spark-streaming.png)
 
-#### 
-#### 
+### Q5. What is Spark Structured Streaming?
+The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an incremental query on the unbounded input table. Let’s understand this model in more detail.
 
-#### 
+![](../images/structured-streaming-stream-as-a-table.png)
+
+### Spark Functions
 
 | Category	             | Functions                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -96,3 +94,33 @@ Native integration with advanced processing libraries (SQL, machine learning, gr
 | Misc. Functions	     | array, bitwiseNOT, callUDF, coalesce, crc32, greatest, if, inputFileName, isNaN, isnotnull, isnull, least, lit, md5, monotonicallyIncreasingId, nanvl, negate, not, rand, randn, sha, sha1, sparkPartitionId, struct, when                                                                                                                                                                                                 |
 | String Functions	     | ascii, base64, concat, concat_ws, decode, encode, format_number, format_string, get_json_object, initcap, instr, length, levenshtein, locate, lower, lpad, ltrim, printf, regexp_extract, regexp_replace, repeat, reverse, rpad, rtrim, soundex, space, split, substring, substring_index, translate, trim, unbase64, upper                                                                                                |
 | Window Functions      | (in addition to Aggregate Functions)	cumeDist, denseRank, lag, lead, ntile, percentRank, rank, rowNumber                                                                                                                                                                                                                                                                                                                   |
+
+### Spark Performance Tuning : (Memory, Data Size,N/W Consumption)
+* Data Serialization : Java Vs Kyro serialization 
+* Memory Tuning :
+* Tuning Data Structure : FastUtil Collection Set
+* Serialized RDD/DataFrame Persistence
+* Garbage Collection Tuning : G1GC
+* Right Level of Parallelism : 
+* Use Broadcast Tables : 
+* Data Locality : 
+
+### Why Spark over Haoop ..?
+
+![](../images/Hadoop-MapReduce-vs-Apache-Spark.jpg)
+
+### Spark SQL Optimization 
+![](../images/spark-catalyst-optimizer.png)
+
+### Explain Spark Adaptive Query Plan 
+Spark SQL adapts the execution plan at runtime, such as automatically setting the number of reducers and join algorithms.
+Adaptive Query Execution (AQE) is an optimization technique in Spark SQL that makes use of the runtime statistics to choose the most efficient query execution plan, which is enabled by default since Apache Spark 3.2.0. Spark SQL can turn on and off AQE by spark.sql.adaptive.enabled as an umbrella configuration. As of Spark 3.0, there are three major features in AQE: including coalescing post-shuffle partitions, converting sort-merge join to broadcast join, and skew join optimization.
+
+* Coalescing Post Shuffle Partitions
+* Converting sort-merge join to broadcast join
+* Converting sort-merge join to shuffled hash join
+* Optimizing Skew Join
+
+![](../images/spark_adaptive_query_plan.png)
+
+### 
