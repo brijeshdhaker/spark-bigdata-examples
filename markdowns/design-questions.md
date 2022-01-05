@@ -56,7 +56,7 @@ of batch data, while simultaneously using real-time stream processing to provide
 ### What is the Kappa Architecture :
 A drawback to the lambda architecture is its complexity. Processing logic appears in two different places — the cold and hot paths — using different frameworks. This leads to duplicate computation logic and the complexity of managing the architecture for both paths.
 
-The kappa architecture was proposed by Jay Kreps as an alternative to the lambda architecture. It has the same basic goals as the lambda architecture, but with an important distinction: All data flows through a single path, using a stream processing system.
+The kappa architecture was proposed by `Jay Kreps` as an alternative to the lambda architecture. It has the same basic goals as the lambda architecture, but with an important distinction: All data flows through a single path, using a stream processing system.
 
 ![kappa](../images/kappa.png)
 

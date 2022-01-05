@@ -8,11 +8,11 @@ services:
   # elasticsearch Server
   #
   elasticsearch:
-    image: elasticsearch:7.16.2
+    image: elasticsearch:7.8.1
     container_name: elasticsearch
     hostname: elasticsearch
     volumes:
-      - /apps/hostpath/elastic-search/es00:/usr/share/elasticsearch/data
+      - /apps/hostpath/elasticsearch/es00:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     environment:
@@ -23,7 +23,7 @@ services:
   # kibana Server
   #
   kibana:
-    image: kibana:7.16.2
+    image: kibana:7.8.1
     container_name: kibana
     hostname: kibana
     volumes:
