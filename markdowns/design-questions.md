@@ -1,5 +1,4 @@
-#
-# What exactly is big data?
+### What exactly is big data?
 The definition of big data is data that contains greater variety, arriving in increasing volumes and with more velocity. This is also known as the three Vs.
 
 Two more Vs have emerged over the past few years: value and veracity. Data has intrinsic value. But it’s of no use until that value is discovered. Equally important: How truthful is your data—and how much can you rely on it?
@@ -16,7 +15,6 @@ Two more Vs have emerged over the past few years: value and veracity. Data has i
 * **Technology maturity** Finally, big data technology is changing at a rapid pace. A few years ago, Apache Hadoop was the popular technology used to handle big data. Then Apache Spark was introduced in 2014. Today, a combination of the two frameworks appears to be the best approach. Keeping up with big data technology is an ongoing challenge.
 * **Security** Big data solutions usually rely on storing all static data in a centralized data lake. Securing access to this data can be challenging, especially when the data must be ingested and consumed by multiple applications and platforms.
 
-#
 ### What is the Architectural Pattern of Big Data?
 * Data Ingestion Layer
 * Data Collector Layer
@@ -36,7 +34,6 @@ Big data solutions typically involve one or more of the following types of workl
 * Interactive exploration of big data.
 * Predictive analytics and machine learning.
 
-#
 ### Why we need Data Pipeline?
 * Convert incoming data to a common format.
 * Prepare data for Analysis and Visualization.
@@ -44,7 +41,6 @@ Big data solutions typically involve one or more of the following types of workl
 * Share Data Processing logic across Web Apps, Batch Jobs, and APIs.
 * Power your Data Ingestion and Integration tools.
 
-#
 ### What is the Lambda Architecture :
 Lambda architecture is a data-processing architecture designed to handle massive quantities of data by taking advantage of both batch and stream-processing methods. 
 This approach to architecture attempts to balance latency, throughput, and fault-tolerance by using batch processing to provide comprehensive and accurate views 
@@ -52,7 +48,6 @@ of batch data, while simultaneously using real-time stream processing to provide
 
 ![Lambda Architecture](../images/lambda.png)
 
-#
 ### What is the Kappa Architecture :
 A drawback to the lambda architecture is its complexity. Processing logic appears in two different places — the cold and hot paths — using different frameworks. This leads to duplicate computation logic and the complexity of managing the architecture for both paths.
 
@@ -64,14 +59,16 @@ There are some similarities to the lambda architecture's batch layer, in that th
 
 If you need to recompute the entire data set (equivalent to what the batch layer does in lambda), you simply replay the stream, typically using parallelism to complete the computation in a timely fashion.
 
-#
 #### How to generate Live Report with last 20 yr of Data.
 ![process-large-data](../images/process-large-data.png)
 
-#
 #### When We should go for No Sql Database
 ![sql-nosql](../images/SQL-NOSQL.png)
 
 The structure of many different forms of data is more easily handled and evolved with a NoSQL database. 
 NoSQL databases are often better suited to storing and modeling structured, semi-structured, 
 and unstructured data in one database.
+
+#### What are different Big Data formats ..?
+
+![](../images/bigdata_data_formats.png)

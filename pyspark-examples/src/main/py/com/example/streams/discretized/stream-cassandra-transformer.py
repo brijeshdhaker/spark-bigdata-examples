@@ -17,7 +17,9 @@ def handle_rdd(rdd):
 
 #
 #
-conf = SparkConf("tweets-cassandra-transformer").setMaster("local[*]").set("spark.cassandra.connection.host","127.0.0.1")
+conf = SparkConf("tweets-cassandra-transformer")\
+    .setMaster("local[*]")\
+    .set("spark.cassandra.connection.host", "127.0.0.1")
 
 sc = SparkContext().getOrCreate(conf=conf)
 ssc = StreamingContext(sc, 5)

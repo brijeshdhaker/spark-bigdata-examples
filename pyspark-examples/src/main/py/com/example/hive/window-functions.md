@@ -1,7 +1,7 @@
 
 $HIVE_HOME/bin/beeline -u jdbc:hive2://quickstart-bigdata:10000 scott tiger
-
-scala> val dataset = Seq(
+```scala
+val dataset = Seq(
 ("Thin",       "cell phone", 6000),
 ("Normal",     "tablet",     1500),
 ("Mini",       "tablet",     5500),
@@ -13,9 +13,10 @@ scala> val dataset = Seq(
 ("Pro",        "tablet",     4500),
 ("Pro2",       "tablet",     6500)).toDF("product", "category", "revenue")
 
-scala> dataset.write.saveAsTable(name='default.PRODUCT_REVENUE', format='hive', mode='append')
+```
+dataset.write.saveAsTable(name='default.PRODUCT_REVENUE', format='hive', mode='append')
+dataset.show
 
-scala> dataset.show
 +----------+----------+-------+
 |   product|  category|revenue|
 +----------+----------+-------+
@@ -58,7 +59,7 @@ dense_rank() OVER (PARTITION BY category ORDER BY revenue DESC) as rank
 FROM PRODUCT_REVENUE;
 
 ### 1. What are the best-selling and the second best-selling products in every category?
-```roomsql
+```sql
 SELECT
     product,
     category,

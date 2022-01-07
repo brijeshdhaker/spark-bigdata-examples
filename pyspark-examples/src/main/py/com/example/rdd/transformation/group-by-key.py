@@ -34,7 +34,7 @@ commons.print_separator()
 
 rdd_3 = rdd_1.groupByKey()
 print("RDD-3 Partition count after re-partitions is  : %i " % (rdd_3.getNumPartitions()))
-rdd_3.foreach(group_by_f)
+rdd_3.map(group_by_f)
 #print(rdd_3.collect())
 
 

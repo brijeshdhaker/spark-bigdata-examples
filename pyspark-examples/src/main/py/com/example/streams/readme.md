@@ -44,20 +44,26 @@ advertised.listeners=PLAINTEXT://localhost:19092
 beeline -u jdbc:hive2://quickstart-bigdata:10000 
 
 set hive.server2.enable.doAs=false;
-
 use default;
-drop table IF EXISTS tweeter_tweets;
-CREATE TABLE if not exists tweeter_tweets (
-    uuid STRING,
-    text STRING, 
-    words INT, 
-    length INT
-) 
-ROW FORMAT DELIMITED 
-FIELDS TERMINATED BY '\\|'
-STORED AS TEXTFILE;
+drop table IF EXISTS transaction_details;
 
-select count(*) from tweeter_tweets;
+CREATE EXTERNAL TABLE IF NOT EXISTS transaction_details (
+    transaction_id int,
+    tansaction_uuid string,
+    transaction_card_type string,
+    transaction_ecommerce_website_name string,
+    transaction_product_name string,
+    transaction_datetime string,
+    transaction_amount double,
+    transaction_city_name string,
+    transaction_country_name string
+)
+COMMENT 'Transaction Details External Table'
+PARTITIONED BY(txn_receive_date string)
+STORED AS Parquet
+LOCATION  'hdfs://namenode:9000/transaction_details/'
+TBLPROPERTIES("creator"="Brijesh K Dhaker");
+
 ```
 
 #
@@ -87,6 +93,20 @@ put 'tweeter_tweets', '16fd2706-8baf-433b-82eb-8c7fada847da', 'Measure:length', 
 #
 # Run Spark Application
 #
+spark-submit \
+--name "structured-kafka-stream" \
+--master local[4] \
+--packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.4 \
+/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/pyspark-examples/src/main/py/com/example/streams/structured/structured-kafka-stream.py
+
+spark-submit \
+--name "structured-kafka-stream" \
+--master local[4] \
+--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2 \
+/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/pyspark-examples/src/main/py/com/example/streams/structured/structured-kafka-stream.py
+
+
+
 spark-submit \
 --name "Sample Spark Application" \
 --master local[*] \

@@ -6,6 +6,7 @@ from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
 from uuid import uuid4
 
+
 def handle_rdd(rdd):
     if not rdd.isEmpty():
         global ss
@@ -34,4 +35,7 @@ transform = lines.map(lambda tweet: (str(uuid4()), tweet, int(len(tweet.split())
 transform.foreachRDD(handle_rdd)
 
 ssc.start()
+
 ssc.awaitTermination()
+
+

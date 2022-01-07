@@ -11,9 +11,9 @@
     <packaging>jar</packaging>
 
     <properties>
-        <scala.version>2.11.12</scala.version>
-        <spark.scala>2.11</spark.scala>
-        <spark.version>2.3.4</spark.version>
+        <scala.version>2.12.11</scala.version>
+        <spark.scala>2.12</spark.scala>
+        <spark.version>3.1.2</spark.version>
         <hbase.client.version>2.4.9</hbase.client.version>
         <hbase-spark.version>1.0.0</hbase-spark.version>
     </properties>
@@ -40,12 +40,13 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.databricks/spark-xml -->
+        <!-- https://mvnrepository.com/artifact/com.databricks/spark-xml
         <dependency>
             <groupId>com.databricks</groupId>
             <artifactId>spark-xml_${spark.scala}</artifactId>
             <version>0.6.0</version>
         </dependency>
+        -->
 
         <dependency>
             <groupId>commons-httpclient</groupId>
@@ -95,12 +96,13 @@
             <version>${hbase.client.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.delta/delta-core -->
+        <!-- https://mvnrepository.com/artifact/io.delta/delta-core
         <dependency>
             <groupId>io.delta</groupId>
             <artifactId>delta-core_${spark.scala}</artifactId>
             <version>0.6.0</version>
         </dependency>
+        -->
 
         <dependency>
             <groupId>org.apache.hbase.connectors.spark</groupId>

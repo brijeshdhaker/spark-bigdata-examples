@@ -1,49 +1,165 @@
 #
 from pyspark.sql import SparkSession
-import pyspark.sql.functions as fn
-from pyspark.sql.types import StringType
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
 
 spark = SparkSession \
     .builder \
-    .master("local[*]") \
+    .master("local[4]") \
     .appName("structured-kafka-stream") \
     .getOrCreate()
 
+spark.conf.set("spark.sql.streaming.checkpointLocation", "/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/.checkpoints/")
+spark.conf.set("spark.sql.shuffle.partitions", "1")
+spark.conf.set("spark.sql.hive.convertMetastoreParquet", "false")
+
+spark.sparkContext.setLogLevel('ERROR')
+
 #
-binary_to_string = fn.udf(lambda x: str(int.from_bytes(x, byteorder='big')), StringType())
+binary_to_string = udf(lambda x: str(int.from_bytes(x, byteorder='big')), StringType())
+
+
+# Convenience function for turning JSON strings into DataFrames.
+def jsonToDataFrame(json, schema=None):
+    # SparkSessions are available with Spark 2.0+
+    reader = spark.read
+    if schema:
+        reader.schema(schema)
+    return reader.json(spark.parallelize([json]))
+
+
+#
+#
+#
+def writeToSQLWarehouse(df, epochId):
+    df.write \
+        .format("com.databricks.spark.sqldw") \
+        .mode('overwrite') \
+        .option("url", "jdbc:sqlserver://<the-rest-of-the-connection-string>") \
+        .option("forward_spark_azure_storage_credentials", "true") \
+        .option("dbtable", "my_table_in_dw_copy") \
+        .option("tempdir", "wasbs://<your-container-name>@<your-storage-account-name>.blob.core.windows.net/<your-directory-name>") \
+        .save()
+
+#
+#
+#
+def writeToHiveWarehouse(df, epochId):
+        print("Hive HiveWarehouse processing started for Micro Batch {} ".format(epochId))
+        hiveRDD = df.rdd
+        hivedf = spark.createDataFrame(hiveRDD)
+        hivedf.show()
+        hivedf.write.mode('ignore').insertInto("default.transaction_details")
+        #df.printSchema()
+        #df.createOrReplaceTempView("batch_records")
+        #df.drop("tansaction_uuid").write.insertInto('default.transaction_detail_hive_tbl', 'append')
+        query = """
+            INSERT INTO TABLE transaction_detail_hive_tbl SELECT 'transaction_id', 'transaction_card_type', 'transaction_ecommerce_website_name',
+            'transaction_product_name', 'transaction_datetime', 'transaction_amount', 'transaction_city_name', 'transaction_country_name' 
+            from  batch_records
+        """
+        #spark.sql("SELECT transaction_id, transaction_card_type, transaction_ecommerce_website_name, transaction_product_name, transaction_datetime, transaction_amount, transaction_city_name, transaction_country_name from  batch_records").show()
+        #df.drop("tansaction_uuid").show()
+        print("Micro Batch {} successfully written into HiveWarehouse".format(epochId))
+
 
 # Subscribe to 1 topic
+#.option("startingOffsets", "earliest")
+#.option("endingOffsets", "latest")
+#.option("failOnDataLoss", "false")
 
-structureStreamDf = (
-    spark.readStream
-        .format("kafka")
-        .option("kafka.bootstrap.servers", "quickstart-bigdata:9092")
-        .option("subscribe", "structured-stream-topic")
-        .option("startingOffsets", "earliest")
-        .option("failOnDataLoss", "false")
-        .load()
-        .withColumn('key', fn.col("key").cast(StringType()))
-        .withColumn('stringValue', fn.col("value").cast(StringType()))
-        .withColumn('valueSchemaId', fn.col("value").cast(StringType()))
-        .select('topic', 'partition', 'offset', 'timestamp', 'timestampType', 'key', 'value', 'valueSchemaId', 'stringValue')
-)
 
-print("Kafka_df.isStreaming : " + str(structureStreamDf.isStreaming))
-print("Schema for structureStreamDf : ")
+# Using a struct
+schema = StructType() \
+    .add("transaction_id", IntegerType()) \
+    .add("tansaction_uuid", StringType()) \
+    .add("transaction_card_type", StringType()) \
+    .add("transaction_ecommerce_website_name", StringType()) \
+    .add("transaction_product_name", StringType()) \
+    .add("transaction_amount", DoubleType()) \
+    .add("transaction_city_name", StringType()) \
+    .add("transaction_country_name", StringType())\
+    .add("transaction_datetime", StringType())
+
+# Subscribe to 1 topic
+structureStreamDf = spark \
+    .readStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "localhost:19092") \
+    .option("subscribe", "structured-stream-source") \
+    .load()\
+    .withColumn('key', col("key").cast(StringType()))\
+    .withColumn('value', from_json(col("value").cast(StringType()), schema)) \
+    .withColumn("txn_receive_date", date_format(current_date(), "yyyy-MM-dd"))
+
+
+# Returns True for DataFrames that have streaming sources
+print("structureStreamDf.isStreaming : " + str(structureStreamDf.isStreaming))
+print("Schema for structureStreamDf  : ")
 structureStreamDf.printSchema()
 
+recordsDF = structureStreamDf.select("value.*", "txn_receive_date", "timestamp")
+# Group the data by window and word and compute the count of each group
+windowAggregationDF = recordsDF.withWatermark("timestamp", "10 minutes") \
+    .groupBy(window(recordsDF.timestamp, "10 minutes", "5 minutes"), recordsDF.transaction_country_name) \
+    .count()
 
-# Select Record from Kafka DF
-data_df = structureStreamDf.select('topic', 'timestamp', 'key', 'stringValue').alias("records").selectExpr("records.*")
+#
+hiveWarehouseDF = structureStreamDf.select("value.*", "txn_receive_date")
+print("Schema for hiveWarehouseDF   : ")
+hiveWarehouseDF.printSchema()
 
-#data_df = structureStreamDf.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+"""
+result_df = data_df.withColumn("txn_receive_date", date_format(current_date(), "yyyy-MM-dd"))\
+            .withColumn("txn_date", to_utc_timestamp(from_unixtime(col("transaction_datetime").cast("Long")/1000,'yyyy-MM-dd HH:mm:ss'),'IST'))\
+"""
 
-#df.isStreaming()    # Returns True for DataFrames that have streaming sources
-print("Schema for data_df : ")
-data_df.printSchema()
-data_df.writeStream \
+"""
+
+# Writing to Kafka
+structureStreamDf.writeStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "localhost:19092") \
+    .option("topic", "structured-stream-sink") \
+    .start()
+
+# Foreach sink - Runs arbitrary computation on the records in the output.
+structureStreamDf.writeStream \
+    .foreach(lambda x : x) \
+    .start()
+
+# ForeachBatch Sink
+hiveWarehouseDF.writeStream \
+    .foreachBatch(writeToHiveWarehouse) \
+    .start() \
+    .awaitTermination()
+
+
+# Writing to Memory sink (for debugging)
+structureStreamDf.writeStream\
+    .format("memory")\
+    .queryName("tableName") \
+    .outputMode("complete") \
+    .start()
+
+spark.sql("select * from tableName").show()   # interactively query in-memory table
+
+"""
+
+# Writing to File sink can be "parquet" "orc", "json", "csv", etc.
+hiveWarehouseDF.writeStream \
+    .format("parquet") \
+    .option("path", "hdfs://namenode:9000/transaction_details/") \
+    .option("checkpointLocation", "hdfs://namenode:9000/checkpoints/transaction_details/") \
+    .partitionBy("txn_receive_date") \
+    .trigger(processingTime="30 seconds") \
+    .start()
+
+# Writing to console sink (for debugging)
+windowAggregationDF.writeStream \
     .outputMode("update") \
-    .format("console") \
+    .format("console")\
+    .trigger(processingTime="10 seconds")\
     .start() \
     .awaitTermination()
 

@@ -4,6 +4,7 @@ from kafka import KafkaProducer
 from random import randint
 from time import sleep
 import sys
+from com.example.models.Transaction import Transaction
 
 BROKER = 'quickstart-bigdata:9092'
 TOPIC = 'tweeter-tweets'

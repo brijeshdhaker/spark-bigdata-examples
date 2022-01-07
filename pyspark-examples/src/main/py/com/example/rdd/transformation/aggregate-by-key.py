@@ -68,6 +68,7 @@ print(" Max Aggregation Results : ")
 # [U] => [V]
 # Sequence operation for aggregation
 def seq_max(accumulator, element):
+    # accumulator if accumulator < element[1] else element[1]
     if accumulator > element[1]:
         return accumulator
     else:

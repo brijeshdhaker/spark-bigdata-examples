@@ -1,8 +1,6 @@
-jellyfish
+kafka-python
 confluent-kafka[avro,json,protobuf]
-avro
-fastavro
-jsonschema
+jellyfish
 protobuf
 requests
 certifi

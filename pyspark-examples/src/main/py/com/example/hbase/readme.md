@@ -91,6 +91,27 @@ WITH SERDEPROPERTIES ("hbase.columns.mapping"=":key,transaction_data:transaction
 TBLPROPERTIES ("hbase.table.name"="transaction_detail_hbase_tbl");
 ```
 
+###
+```
+0: jdbc:hive2://> describe transaction_detail_hive_tbl;
+OK
++-------------------------------------+------------+----------+
+|              col_name               | data_type  | comment  |
++-------------------------------------+------------+----------+
+| transaction_id                      | int        |          |
+| transaction_card_type               | string     |          |
+| transaction_ecommerce_website_name  | string     |          |
+| transaction_product_name            | string     |          |
+| transaction_datetime                | string     |          |
+| transaction_amount                  | double     |          |
+| transaction_city_name               | string     |          |
+| transaction_country_name            | string     |          |
++-------------------------------------+------------+----------+
+8 rows selected (0.057 seconds)
+0: jdbc:hive2://> 
+
+```
+
 
 ### Step 4: Query Hive table from Hive CLI or Hue browser to verify Hive table and HBase table integration is working
 ```commandline

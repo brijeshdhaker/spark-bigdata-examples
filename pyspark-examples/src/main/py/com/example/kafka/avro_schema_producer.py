@@ -18,7 +18,7 @@ from avro.io import DatumWriter, BinaryEncoder
 from confluent_kafka import Producer
 from confluent_kafka.avro import AvroProducer
 
-from src.utils.load_avro_schema_from_file import load_avro_schema_from_file, load_avro_schema_as_str
+from com.example.utils.load_avro_schema_from_file import load_avro_schema_from_file, load_avro_schema_as_str
 
 if __name__ == '__main__':
 

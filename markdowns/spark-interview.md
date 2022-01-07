@@ -123,4 +123,27 @@ Adaptive Query Execution (AQE) is an optimization technique in Spark SQL that ma
 
 ![](../images/spark_adaptive_query_plan.png)
 
-### 
+###  How do I resolve the error Container killed by YARN for exceeding memory limits in Spark on EMR?
+
+### Explain Dynamic Resource Allocation OR  How you manage different size of workload in spark. 
+Spark provides a mechanism to dynamically adjust the resources your application occupies based on the workload. This means that your application may give resources back to the cluster if they are no longer used and request them again later when there is demand. This feature is particularly useful if multiple applications share resources in your Spark cluster.
+This feature is disabled by default and available on all coarse-grained cluster managers, i.e. standalone mode, YARN mode, Mesos coarse-grained mode and K8s mode.
+
+spark.dynamicAllocation.enabled
+spark.dynamicAllocation.shuffleTracking.enabled
+spark.dynamicAllocation.minExecutors,
+spark.dynamicAllocation.maxExecutors, and
+spark.dynamicAllocation.initialExecutors
+
+spark-submit --master yarn-cluster \
+--driver-cores 2 \
+--driver-memory 2G \
+--num-executors 10 \
+--executor-cores 5 \
+--executor-memory 2G \
+--conf spark.dynamicAllocation.minExecutors=5 \
+--conf spark.dynamicAllocation.maxExecutors=30 \
+--conf spark.dynamicAllocation.initialExecutors=10 \ # same as --num-executors 10
+--class com.spark.sql.jdbc.SparkDFtoOracle2 \
+Spark-hive-sql-Dataframe-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
