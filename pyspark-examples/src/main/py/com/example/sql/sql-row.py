@@ -1,4 +1,4 @@
-import src.utils.commons as commons
+import com.example.utils.commons as commons
 from pyspark.sql import SparkSession, Row
 
 
@@ -27,8 +27,7 @@ df1.show()
 
 collData=df1.collect()
 print(collData)
-for row in collData:
-    print(row.name + "," +str(row.lang))
+for row in collData: print(row.name + "," +str(row.lang))
 
 commons.print_separator()
 
