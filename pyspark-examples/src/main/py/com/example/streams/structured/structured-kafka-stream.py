@@ -71,15 +71,15 @@ def writeToHiveWarehouse(df, epochId):
 
 # Using a struct
 schema = StructType() \
-    .add("transaction_id", IntegerType()) \
-    .add("tansaction_uuid", StringType()) \
-    .add("transaction_card_type", StringType()) \
-    .add("transaction_ecommerce_website_name", StringType()) \
-    .add("transaction_product_name", StringType()) \
-    .add("transaction_amount", DoubleType()) \
-    .add("transaction_city_name", StringType()) \
-    .add("transaction_country_name", StringType())\
-    .add("transaction_datetime", StringType())
+    .add("id", IntegerType()) \
+    .add("uuid", StringType()) \
+    .add("cardtype", StringType()) \
+    .add("website", StringType()) \
+    .add("product", StringType()) \
+    .add("amount", DoubleType()) \
+    .add("city", StringType()) \
+    .add("country", StringType())\
+    .add("addts", LongType())
 
 # Subscribe to 1 topic
 structureStreamDf = spark \
@@ -101,7 +101,7 @@ structureStreamDf.printSchema()
 recordsDF = structureStreamDf.select("value.*", "txn_receive_date", "timestamp")
 # Group the data by window and word and compute the count of each group
 windowAggregationDF = recordsDF.withWatermark("timestamp", "10 minutes") \
-    .groupBy(window(recordsDF.timestamp, "10 minutes", "5 minutes"), recordsDF.transaction_country_name) \
+    .groupBy(window(recordsDF.timestamp, "10 minutes", "5 minutes"), recordsDF.country) \
     .count()
 
 #

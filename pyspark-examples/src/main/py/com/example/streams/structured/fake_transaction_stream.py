@@ -18,6 +18,6 @@ except Exception as e:
 while True:
     transaction = Transaction.random()
     print(">>> '{}'".format(transaction.to_dict()))
-    p.send(topic=TOPIC, value=bytes(str(transaction.to_dict()),encoding='utf8'), key=bytes(str(transaction.uuid),encoding='utf8'))
+    p.send(topic=TOPIC, value=bytes(str(transaction.to_dict()), encoding='utf8'), key=bytes(str(transaction.uuid), encoding='utf8'))
     sleep(.1)
 

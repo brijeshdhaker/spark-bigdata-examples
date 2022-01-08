@@ -27,7 +27,7 @@ class Transaction(object):
     # The init method or constructor
     def __init__(self, uuid=None):
         event_datetime = datetime.now()
-        self.addts = int(event_datetime.strftime("%s")) * 1000
+        self.addts = int(event_datetime.strftime("%s"))
         if uuid is None:
             self.uuid = str(uuid4())
         else:
@@ -98,14 +98,14 @@ class Transaction(object):
 
     def to_dict(self):
         return dict(
-            transaction_id=self.id,
-            tansaction_uuid=self.uuid,
-            transaction_card_type=self.cardType,
-            transaction_ecommerce_website_name= self.website,
-            transaction_product_name= self.product,
-            transaction_datetime=self.addts,
-            transaction_amount=self.amount,
-            transaction_city_name=self.city,
-            transaction_country_name=self.country
+            id=self.id,
+            uuid=self.uuid,
+            cardtype=self.cardType,
+            website= self.website,
+            product= self.product,
+            amount=self.amount,
+            city=self.city,
+            country=self.country,
+            addts=self.addts
         )
 

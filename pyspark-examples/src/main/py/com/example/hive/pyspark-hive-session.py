@@ -9,6 +9,7 @@ if __name__ == "__main__":
         .builder \
         .appName("Hive Session Data Frame Join") \
         .enableHiveSupport() \
+        .config("spark.sql.warehouse.dir", "hdfs://namenode:9000/user/hive/warehouse") \
         .getOrCreate()
 
     print(spark.sparkContext.appName)
@@ -17,19 +18,19 @@ if __name__ == "__main__":
     spark.sql("show tables").show()
 
     #
-    df_07 = spark.sql("SELECT * from sample_07")
-    df_07.filter(df_07.salary > 150000).show()
+    transactionDF = spark.sql("SELECT * from transaction_details")
+    transactionDF.filter(transactionDF.transaction_amount > 10000).show()
 
     #
-    df_08 = spark.sql("SELECT * from sample_08")
-    tbls = spark.sql("show tables")
-    tbls.show()
+    #df_08 = spark.sql("SELECT * from sample_08")
+    #tbls = spark.sql("show tables")
+    #tbls.show()
 
     #
-    df_09 = df_07.join(df_08, df_07.code == df_08.code).select(df_07.code, df_07.description)
-    df_09.show()
+    #df_09 = df_07.join(df_08, df_07.code == df_08.code).select(df_07.code, df_07.description)
+    #df_09.show()
 
     #
-    df_09.write.saveAsTable("sample_09")
-    tbls = spark.sql("show tables")
-    tbls.show()
+    #df_09.write.saveAsTable("sample_09")
+    #tbls = spark.sql("show tables")
+    #tbls.show()

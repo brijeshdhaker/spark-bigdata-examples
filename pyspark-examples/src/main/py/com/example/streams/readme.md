@@ -45,25 +45,23 @@ beeline -u jdbc:hive2://quickstart-bigdata:10000
 
 set hive.server2.enable.doAs=false;
 use default;
-drop table IF EXISTS transaction_details;
-
+DROP TABLE transaction_details;
 CREATE EXTERNAL TABLE IF NOT EXISTS transaction_details (
-    transaction_id int,
-    tansaction_uuid string,
-    transaction_card_type string,
-    transaction_ecommerce_website_name string,
-    transaction_product_name string,
-    transaction_datetime string,
-    transaction_amount double,
-    transaction_city_name string,
-    transaction_country_name string
+    id int,
+    uuid string,
+    cardtype string,
+    website string,
+    product string,
+    amount double,
+    city string,
+    country string,
+    addts bigint
 )
 COMMENT 'Transaction Details External Table'
 PARTITIONED BY(txn_receive_date string)
 STORED AS Parquet
 LOCATION  'hdfs://namenode:9000/transaction_details/'
 TBLPROPERTIES("creator"="Brijesh K Dhaker");
-
 ```
 
 #
