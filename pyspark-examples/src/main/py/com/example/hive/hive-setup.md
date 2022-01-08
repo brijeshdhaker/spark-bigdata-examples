@@ -190,7 +190,10 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 STORED AS textfile
 LOCATION '/user/brijeshdhaker/hiveexttable'
-TBLPROPERTIES("creator"="Brijesh K Dhaker", "skip.header.line.count"="1");
+TBLPROPERTIES(
+"creator"="Brijesh K Dhaker", 
+"skip.header.line.count"="1"
+);
 
 LOAD DATA INPATH '/data/Employee.txt' OVERWRITE INTO TABLE SPARK_APPS.EMPLOYEE_EXTERNAL_TABLE;
 
@@ -245,7 +248,11 @@ create external table nation_s3_orc (
 )
 STORED AS ORC
 LOCATION  's3://qtest-qubole-com/datasets/presto/functional/nation_s3_orc'
-TBLPROPERTIES ("orc.compress"="SNAPPY");
+TBLPROPERTIES (
+"hive.exec.dynamic.partition"="true",
+"hive.exec.dynamic.partition.mode"="nonstrict",
+"orc.compress"="SNAPPY"
+);
 ```
 #### AVRO Tables 
 #### 1. Get Avro Schema 
