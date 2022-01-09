@@ -33,7 +33,7 @@ if __name__ == '__main__':
     topic = "test-topic"
     # Create Producer instance
     producer_conf = {
-        'bootstrap.servers': 'quickstart-bigdata:9092',
+        'bootstrap.servers': 'kafka-broker:9092',
     }
     producer = Producer(producer_conf)
     # Create topic if needed

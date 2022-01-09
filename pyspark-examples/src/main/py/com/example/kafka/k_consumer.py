@@ -2,7 +2,7 @@ from confluent_kafka import Consumer
 
 
 c = Consumer({
-    'bootstrap.servers': 'quickstart-bigdata:9092',
+    'bootstrap.servers': 'kafka-broker:9092',
     'group.id': 'python-cg',
     'auto.offset.reset': 'earliest'
 })
