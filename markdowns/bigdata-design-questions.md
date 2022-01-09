@@ -59,6 +59,15 @@ There are some similarities to the lambda architecture's batch layer, in that th
 
 If you need to recompute the entire data set (equivalent to what the batch layer does in lambda), you simply replay the stream, typically using parallelism to complete the computation in a timely fashion.
 
+#### What is expectation from RealTime Data Ingestion framework.?
+* Quick Response
+* Replayability
+* Reliability
+* Scalability
+* Ease of Integration
+* Ease of switching
+* Capturing Schema Changes
+
 #### How to generate Live Report with last 20 yr of Data.
 ![process-large-data](../images/process-large-data.png)
 

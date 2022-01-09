@@ -15,6 +15,10 @@ Answer : While submitting the spark application pass these two parameters .
 –num-executors 10
 –conf spark.dynamicAllocation.enabled = false
 
+Spark 1.x – Introduced Catalyst Optimizer and Tungsten Execution Engine
+Spark 2.x – Added Cost-Based Optimizer
+Spark 3.0 – Now added Adaptive Query Execution
+
 Note: you can change the number of executors if you need.
 
 ### 3.How would you check if rdd is empty, without using collect?

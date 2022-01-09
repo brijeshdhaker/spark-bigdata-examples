@@ -64,11 +64,7 @@ def writeToHiveWarehouse(df, epochId):
 
 
 # Subscribe to 1 topic
-#.option("startingOffsets", "earliest")
 #.option("endingOffsets", "latest")
-#.option("failOnDataLoss", "false")
-
-
 # Using a struct
 schema = StructType() \
     .add("id", IntegerType()) \
@@ -85,8 +81,10 @@ schema = StructType() \
 structureStreamDf = spark \
     .readStream \
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "localhost:19092") \
+    .option("kafka.bootstrap.servers", "kafka-broker:19092") \
     .option("subscribe", "structured-stream-source") \
+    .option("startingOffsets", "earliest")\
+    .option("failOnDataLoss", "false") \
     .load()\
     .withColumn('key', col("key").cast(StringType()))\
     .withColumn('value', from_json(col("value").cast(StringType()), schema)) \

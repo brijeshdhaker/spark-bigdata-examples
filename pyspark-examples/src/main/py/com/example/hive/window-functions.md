@@ -70,7 +70,8 @@ FROM (
     category,
     revenue,
     dense_rank() OVER (PARTITION BY category ORDER BY revenue DESC) as rank
-    FROM PRODUCT_REVENUE) tmp
+    FROM PRODUCT_REVENUE
+) tmp
 WHERE
 rank <= 2
 ```

@@ -1,3 +1,26 @@
+####. When to use HBase ..?
+If your application has a variable schema where each row is slightly different, then you should look at HBase.
+As an example, doing a modeling exercise using a standard relational schema; When you can’t add columns fast enough and most of them are NULL in each row, you should consider HBase. If you find that your data is stored in collections, for example some meta data, message data or binary data that is all keyed on the same value, then you should consider HBase. 
+If you need key based access to data when storing or retrieving, then you should consider HBase.
+
+### When should you use HBase?
+After going through the above sections, we have acquired some idea about HBase. We also know about the supporting services and the key considerations for HBase deployment. As a NoSQL DB, HBase offers lot of good functionalities, but it is still not a ‘Fit for All’ solution. Following are some of the key areas to be considered before finalizing HBase for your application.
+
+* Data volume: The volume of data is the most common point to be considered. You should have peta bytes of data to be processed in a distributed environment. Otherwise, for a small amount of data, it will be stored and processed in a single node, keeping other nodes idle. So, it will be a misuse of technology framework.
+* Application Types: HBase is not suitable for transactional applications, large volume MapReduce jobs, relational analytics, etc. It is preferred when you have a variable schema with slightly different rows. It is also suitable when you are going for a key dependent access to your stored data.
+* Hardware environment: HBase runs on top of HDFS. And HDFS works efficiently with a large number of nodes (minimum 5). So, if you have good hardware support, then HBase can be a good selection.
+* No requirement of relational features: Your application should not have any requirement for RDBMS features like transaction, triggers, complex query, complex joins etc. If you can build your application without these features, then go for HBase.
+* Quick access to data: If you need a random and real time access to your data, then HBase is a suitable candidate. It is also a perfect fit for storing large tables with multi structured data. It gives ‘flashback’ support to queries, which makes it more suitable for fetching data in a particular instance of time.
+* Apart from the above points, HBase is also suitable when you need fault tolerant, fast and usable data management in a non-relational environment.
+
+#### Some use cases
+There are a lot of real-life implementations of HBase. Some of the important use cases are:
+* Use of HBase by Mozilla: They generally store all crash data in HBase
+* Use of HBase by Facebook: Facebook uses HBase storage to store real-time messages.
+
+#### Conclusion
+Throughout this article, we have discussed the different features of HBase, its working methodology and the implementation areas. We have also checked the recent improvements and some of the use cases. In short, we can conclude that HBase is a key-value NoSQL database and a good fit for real-time queries. So, HBase along with its eco-system products (like Zookeeper, HMaster etc.) can be a complete solution for NoSQL deployments. But again, before finalizing, we should evaluate it based on the application requirement.
+
 #HBase shell commands are mainly categorized into 6 parts
 
 ## 1) General  HBase shell commands

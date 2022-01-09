@@ -80,3 +80,11 @@ Now, only 50 buckets will be created no matter how many unique values are there 
 ### When to use Bucketing?
 * We cannot do partitioning on a column with very high cardinality. Too many partitions will result in multiple Hadoop files which will increase the load on the same node as it has to carry the metadata of each of the partitions.
 * If some map-side joins are involved in your queries, then bucketed tables are a good option. Map side join is a process where two tables are joins using the map function only without any reduced function. I would recommend you to go through this article for more understanding about map-side joins: Map Side Joins in Hive
+
+#### Explain Static Vs Dynamic Partitioning in Hive 
+ * Static Partitioning  : At the time of data load. Ex. Daily Data load.
+ * Dynamic Partitioning : At the time of SQL Join & Data Insertions
+ 
+hive.exec.dynamic.partition=true
+hive.exec.dynamic.partition.mode=nonstrict
+
