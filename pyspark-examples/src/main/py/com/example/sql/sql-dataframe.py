@@ -1,9 +1,9 @@
-import src.utils.commons as commons
+import com.example.utils.commons as commons
 import sys
 #
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
-from src.data.sampledata import t_r_data
+from com.example.data.sampledata import t_r_data
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, BooleanType
 
 if __name__ == "__main__":
