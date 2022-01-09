@@ -6,7 +6,7 @@ from time import sleep
 from com.example.models.Transaction import Transaction
 import sys
 
-BROKER = 'kafka-broker:19092'
+BROKER = 'kafka-broker:9092'
 TOPIC = 'structured-stream-source'
 
 try:
