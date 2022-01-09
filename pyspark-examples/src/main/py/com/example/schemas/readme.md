@@ -76,9 +76,8 @@
 #
 #
 $SPARK_HOME/bin/spark-submit \
---name "Sample Spark Application" \
---master local[*] \
---packages org.apache.spark:spark-streaming-kafka-0-8:2.4.0-cdh6.3.2 \
+--name "pyspark-schema-merge" \
+--master local[2] \
 --conf "spark.executorEnv.PYSPARK_DRIVER_PYTHON=./venv/bin/python" \
 --conf "spark.executorEnv.PYSPARK_PYTHON=./venv/bin/python" \
---py-files "file:///apps/hostpath/spark/artifacts/application.zip" /apps/hostpath/spark/artifacts/hello.py
+/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/pyspark-examples/src/main/py/com/example/schemas/schema-merge.py

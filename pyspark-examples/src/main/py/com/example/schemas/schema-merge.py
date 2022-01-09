@@ -1,13 +1,13 @@
 #
 from pyspark.sql import SparkSession
-import pyspark.sql.functions as fn
-from pyspark.sql.types import StringType
 
 spark = SparkSession \
     .builder \
     .master("local[*]") \
     .appName("pyspark-schema-merge") \
     .getOrCreate()
+
+spark.sparkContext.setLogLevel('WARN')
 
 print("Schema Version - 1 : ")
 df_v1 = spark.read.parquet("file:///home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/data/employee-v1.parquet")
