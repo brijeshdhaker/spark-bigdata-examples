@@ -8,38 +8,78 @@ services:
   # Zookeeper Server
   #
   zookeeper:
-    image: bitnami/zookeeper:3.7
+    image: confluentinc/cp-zookeeper:5.5.0
     hostname: zookeeper
     container_name: zookeeper
     ports:
       - "2181:2181"
     volumes:
-      - "/apps/hostpath/zookeeper/sandbox2/snode:/bitnami/zookeeper"
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/zookeeper/secrets:/etc/zookeeper/secrets
+      - /apps/hostpath/sandbox2/zookeeper/data:/var/lib/zookeeper/data
+      - /apps/hostpath/sandbox2/zookeeper/log:/var/lib/zookeeper/log
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ALLOW_UNSIGNED: "true"
 
   #
   # Apache Kafka Server
   #
-  kafka:
-    image: 'bitnami/kafka:latest'
-    hostname: kafka
-    container_name: kafka
-    ports:
-      - '9092:9092'
-      - '19092:19092'
-    volumes:
-      - /apps/hostpath/kafka/sandbox2/snode:/bitnami/kafka
+  kafka-broker:
+    image: confluentinc/cp-server:5.5.0
+    hostname: kafka-broker
+    container_name: kafka-broker
     depends_on:
       - zookeeper
+    ports:
+      - "9092:9092"
+      - "19092:19092"
+    volumes:
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/kafka-broker/secrets:/etc/kafka/secrets
+      - /apps/hostpath/sandbox2/kafka-broker/data:/var/lib/kafka/data
     environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:19092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:19092
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
-      - KAFKA_HEAP_OPTS=-Xmx512m -Xms512m
+      KAFKA_BROKER_ID: 0
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_LISTENERS: INTERNAL://kafka-broker:19092,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-broker:19092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: kafka-broker:19092
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
+      CONFLUENT_METRICS_ENABLE: 'true'
+      CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
+
+  #
+  #
+  #
+  schema-registry:
+    image: confluentinc/cp-schema-registry:5.5.0
+    hostname: schema-registry
+    container_name: schema-registry
+    depends_on:
+      - zookeeper
+      - kafka-broker
+    ports:
+      - "8081:8081"
+    volumes:
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/schema-registry/secrets:/etc/schema-registry/secrets
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka-broker:19092'
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+      SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: INFO
 
   #
   # Mysql Database Server
@@ -50,8 +90,9 @@ services:
     hostname: mariadb
     restart: always
     volumes:
-      - /apps/hostpath/mysql/conf:/etc/mysql/conf.d
-      - /apps/hostpath/mysql/data:/var/lib/mysql
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/mysql/conf:/etc/mysql/conf.d
+      - /apps/hostpath/sandbox2/mysql/data:/var/lib/mysql
     environment:
       MYSQL_OPERATIONS_USER: operate
       MYSQL_OPERATIONS_PASSWORD: p@SSW0rd
@@ -73,7 +114,8 @@ services:
     ports:
       - "7000:7000"
     volumes:
-      - "/apps/hostpath/cassandra/data:/var/lib/cassandra"
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/cassandra/data:/var/lib/cassandra
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
@@ -234,6 +276,8 @@ services:
     hostname: hbase-master
     container_name: hbase-master
     restart: always
+    depends_on:
+      - zookeeper
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 zookeeper:2181"
     env_file:
@@ -250,6 +294,8 @@ services:
     container_name: hbase-regionserver
     hostname: hbase-regionserver
     restart: always
+    depends_on:
+      - zookeeper
     env_file:
       - sandbox2.env
     environment:
@@ -287,6 +333,27 @@ services:
       - /apps/hostpath/.ivy2:/opt/zeppelin/.ivy2
     env_file:
       - sandbox2.env
+
+  #
+  # Apache NiFi
+  #
+  hdf-nifi:
+    image: hortonworks/nifi:latest
+    container_name: hdf-nifi
+    hostname: hdf-nifi
+    restart: always
+    ports:
+      - "19090:8080"
+      - "19443:8443"
+    volumes:
+      - /apps/hostpath:/apps/hostpath
+      - /apps/hostpath/sandbox2/nifi/conf:/opt/nifi/nifi-current/conf
+      - /apps/hostpath/sandbox2/nifi/content_repository:/opt/nifi/nifi-current/content_repository
+      - /apps/hostpath/sandbox2/nifi/database_repository:/opt/nifi/nifi-current/database_repository
+      - /apps/hostpath/sandbox2/nifi/flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - /apps/hostpath/sandbox2/nifi/provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - /apps/hostpath/sandbox2/nifi/logs:/opt/nifi/nifi-current/logs
+      - /apps/hostpath/sandbox2/nifi/state:/opt/nifi/nifi-current/state
 
 #
 volumes:
