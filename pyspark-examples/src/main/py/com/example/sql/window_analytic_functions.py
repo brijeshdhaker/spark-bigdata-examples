@@ -10,12 +10,24 @@ spark = SparkSession \
     .appName("PySpark Window Functions") \
     .enableHiveSupport() \
     .getOrCreate()
-
+spark.sparkContext.setLogLevel("WARN")
 
 # Create Data Frame From Hive table
-df = spark.table("PRODUCT_REVENUE")
-df.show()
+dataset = [
+    ("Thin",       "cell phone", 6000),
+    ("Normal",     "tablet",     1500),
+    ("Mini",       "tablet",     5500),
+    ("Ultra thin", "cell phone", 5000),
+    ("Very thin",  "cell phone", 6000),
+    ("Big",        "tablet",     2500),
+    ("Bendable",   "cell phone", 3000),
+    ("Foldable",   "cell phone", 3000),
+    ("Pro",        "tablet",     4500),
+    ("Pro2",       "tablet",     6500)
+]
 
+df = spark.createDataFrame(dataset, ["category", "product",  "revenue"])
+df.show()
 
 windowSpec = Window.partitionBy(df['category']).orderBy(df['revenue'].desc())
 
