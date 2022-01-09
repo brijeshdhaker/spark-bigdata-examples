@@ -8,7 +8,7 @@ schema_path="user.avsc"
 schema = avro.schema.parse(open(schema_path).read())
 
 
-for i in xrange(1):
+for i in range(1):
     writer = avro.io.DatumWriter(schema)
     bytes_writer = io.BytesIO()
     encoder = avro.io.BinaryEncoder(bytes_writer)

@@ -9,7 +9,7 @@ def load_avro_schema_as_str(schema_file):
     with open(schema_file, 'r') as file:
         value_schema_string = file.read().rstrip()
 
-    return key_schema_string, value_schema_string
+    return key_schema_string, str(value_schema_string)
 
 def load_avro_schema_from_file(schema_file):
     key_schema_string = """

@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     # Read arguments and configurations and initialize
     topic = "users-topic-avro"
-    BASE_DIR = "/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/pyspark-examples/"
+    BASE_DIR = "/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/"
     key_schema, value_schema = load_avro_schema_from_file(BASE_DIR + 'resources/avro/user-record.avsc')
 
     reader = DatumReader(value_schema)
