@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # Report malformed record, discard results, continue polling
     avro_consumer = Consumer({
         'bootstrap.servers': 'kafka-broker:9092',
-        'group.id': 'python-avro-cg',
+        'group.id': 'python-custom-cg',
         'auto.offset.reset': 'earliest'
     })
 
@@ -65,7 +65,6 @@ if __name__ == '__main__':
                 # Initial message consumption may take up to
                 # `session.timeout.ms` for the consumer group to
                 # rebalance and start consuming
-                print("Waiting for message or event/error in poll()")
                 continue
             elif msg.error():
                 print('error: {}'.format(msg.error()))
