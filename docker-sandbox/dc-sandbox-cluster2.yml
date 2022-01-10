@@ -328,7 +328,7 @@ services:
       - /opt/sandbox/hive-2.3.9:/opt/hive-2.3.9
       - /opt/sandbox/spark-2.3.4:/opt/spark-2.3.4
       - /opt/sandbox/spark-3.1.2-2.7:/opt/spark-3.1.2
-      - /apps/hostpath/zeppelin/sandbox2/conf:/opt/zeppelin/conf
+      - /apps/hostpath/sandbox2/zeppelin/conf:/opt/zeppelin/conf
       - /apps/hostpath/.m2:/opt/zeppelin/.m2
       - /apps/hostpath/.ivy2:/opt/zeppelin/.ivy2
     env_file:
