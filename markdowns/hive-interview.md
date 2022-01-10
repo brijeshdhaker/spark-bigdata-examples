@@ -1,3 +1,12 @@
+### What are the different components of a Hive architecture?
+There are several components of Hive Architecture. Such as –
+
+* `User Interface –` Basically, it calls the execute interface to the driver. Further, driver creates a session handle to the query. Then sends the query to the compiler to generate an execution plan for it.
+* `Metastore –` It is used to Send the metadata to the compiler. Basically, for the execution of the query on receiving the send MetaData request.
+* `Compiler-` It generates the execution plan. Especially, that is a DAG of stages where each stage is either a metadata operation, a map or reduce job or an operation on HDFS.
+* `Execute Engine-` Basically,  by managing the dependencies for submitting each of these stages to the relevant components we use Execute engine.
+![](../images/hive-architecture.png)
+
 ## Overview
 Understand the meaning of partitioning and bucketing in the Hive in detail.
 We will see, how to create partitions and buckets in the Hive
@@ -80,11 +89,14 @@ Now, only 50 buckets will be created no matter how many unique values are there 
 ### When to use Bucketing?
 * We cannot do partitioning on a column with very high cardinality. Too many partitions will result in multiple Hadoop files which will increase the load on the same node as it has to carry the metadata of each of the partitions.
 * If some map-side joins are involved in your queries, then bucketed tables are a good option. Map side join is a process where two tables are joins using the map function only without any reduced function. I would recommend you to go through this article for more understanding about map-side joins: Map Side Joins in Hive
+* It allows us to decrease the query time. Also, makes the sampling process more efficient.
 
-#### Explain Static Vs Dynamic Partitioning in Hive 
- * Static Partitioning  : At the time of data load. Ex. Daily Data load.
- * Dynamic Partitioning : At the time of SQL Join & Data Insertions
- 
+### Explain Static Vs Dynamic Partitioning in Hive 
+ * `Static Partitioning`  : At the time of data load. Ex. Daily Data load.
+ * `Dynamic Partitioning` : At the time of SQL Join & Data Insertions 
+ Dynamic partitioning can be enable by adding following  configuration .
 hive.exec.dynamic.partition=true
 hive.exec.dynamic.partition.mode=nonstrict
+
+### 
 

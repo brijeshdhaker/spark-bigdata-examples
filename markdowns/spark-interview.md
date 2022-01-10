@@ -11,15 +11,14 @@ MEMORY_AND_DISK_SER
 
 ### 2. If your cluster have limited resources, and there are many applications which need to be run, how would you ensure that your spark application will take the fixed number of resource and hence does not impact execution of other applications?
 Answer : While submitting the spark application pass these two parameters .
-
 –num-executors 10
 –conf spark.dynamicAllocation.enabled = false
+Note: you can change the number of executors if you need.
 
+### :
 Spark 1.x – Introduced Catalyst Optimizer and Tungsten Execution Engine
 Spark 2.x – Added Cost-Based Optimizer
 Spark 3.0 – Now added Adaptive Query Execution
-
-Note: you can change the number of executors if you need.
 
 ### 3.How would you check if rdd is empty, without using collect?
 Answer : You can use rdd.isEmpty ,it will return true if rdd is empty.
@@ -51,7 +50,13 @@ So output would look like
 ```
 
 ### Q2 . How many number of column will be present in the df2, if df1 have three columns a1,a2,a3
-Var df2=df.withColumn(“b1”,lit(“a1”)).withColumn(“a1”,lit(“a2”)).withColumn(“a2”,$“a2”).withColumn(“b2”,$”a3”)).withColumn(“a3”,lit(“b1”))
+```
+var df2 = df.withColumn(“b1”,lit(“a1”))
+            .withColumn(“a1”,lit(“a2”))
+            .withColumn(“a2”,$“a2”)
+            .withColumn(“b2”,$”a3”))
+            .withColumn(“a3”,lit(“b1”))
+
 Answer :
 Total 5 As below
 Df // a1,a2,a3
@@ -60,6 +65,7 @@ df.withColumn(“b1”,lit(“a1”)) //a1,a2,a3,b1
 .withColumn(“a2”,$“a2”) //a1,a2,a3,b1
 .withColumn(“b2”,$”a3”))//a1,a2,a3,b1,b2
 .withColumn(“a3”,lit(“b1”))//a1,a2,a3,b1,b2
+```
 
 ###  Q3 . How to get RDD with its element indices.
 Say myrdd = (a1,b1,c1,s2,s5)
@@ -101,7 +107,7 @@ The key idea in Structured Streaming is to treat a live data stream as a table t
 
 ### Spark Performance Tuning : (Memory, Data Size,N/W Consumption)
 * Data Serialization : Java Vs Kyro serialization 
-* Memory Tuning :
+* Memory Tuning : Driver & Executors Memory 
 * Tuning Data Structure : FastUtil Collection Set
 * Serialized RDD/DataFrame Persistence
 * Garbage Collection Tuning : G1GC
@@ -109,9 +115,19 @@ The key idea in Structured Streaming is to treat a live data stream as a table t
 * Use Broadcast Tables : 
 * Data Locality : 
 
-### Why Spark over Haoop ..?
-
+### Why Spark over Hadoop ..?
 ![](../images/Hadoop-MapReduce-vs-Apache-Spark.jpg)
+
+### Explain Spark Memory Model
+* reserve memory 300mb
+* user space memory (1 - spark.memory.fraction) * total memory == 0.4 * total memory
+* spark.memory.fraction = 0.6
+* spark.memory.storageFraction = 0.5
+* spark.memory.executionFraction = 0.5
+![](../images/spark_unified_memory_model.jpg)
+
+### Explain Spark Yarn Memory Model
+![](../images/spark-memory-breakup.png)
 
 ### Spark SQL Optimization 
 ![](../images/spark-catalyst-optimizer.png)
@@ -127,27 +143,39 @@ Adaptive Query Execution (AQE) is an optimization technique in Spark SQL that ma
 
 ![](../images/spark_adaptive_query_plan.png)
 
-###  How do I resolve the error Container killed by YARN for exceeding memory limits in Spark on EMR?
+###  How do I resolve the error Container killed by YARN for exceeding memory limits in Spark on YARN?
+* Increase Memory Overhead (Memory overhead is the amount of off-heap memory allocation to each executor)
+  keep in mind that total `executor/driver` memory should be less than < Yarn container memory
+  spark.executor.memory + spark.executor.memoryOverhead < yarn.resourcemanager.resource.memory--mb
+* Reduce number of Executor cores
+* Increase Number of Partitions
+* Increase Driver & Executor memory
 
 ### Explain Dynamic Resource Allocation OR  How you manage different size of workload in spark. 
 Spark provides a mechanism to dynamically adjust the resources your application occupies based on the workload. This means that your application may give resources back to the cluster if they are no longer used and request them again later when there is demand. This feature is particularly useful if multiple applications share resources in your Spark cluster.
 This feature is disabled by default and available on all coarse-grained cluster managers, i.e. standalone mode, YARN mode, Mesos coarse-grained mode and K8s mode.
-
-spark.dynamicAllocation.enabled
-spark.dynamicAllocation.shuffleTracking.enabled
-spark.dynamicAllocation.minExecutors,
-spark.dynamicAllocation.maxExecutors, and
-spark.dynamicAllocation.initialExecutors
-
+```
 spark-submit --master yarn-cluster \
+# spark.yarn.am.cores (client)
+# spark.driver.cores (cluster)
 --driver-cores 2 \
 --driver-memory 2G \
 --num-executors 10 \
+# spark.executor.cores
 --executor-cores 5 \
 --executor-memory 2G \
+# spark.yarn.queue
+--queue thequeue \
+# Dynamic Resource Allocation
+--conf spark.dynamicAllocation.enabled
+--conf spark.dynamicAllocation.shuffleTracking.enabled
 --conf spark.dynamicAllocation.minExecutors=5 \
 --conf spark.dynamicAllocation.maxExecutors=30 \
 --conf spark.dynamicAllocation.initialExecutors=10 \ # same as --num-executors 10
+#
+--conf spark.yarn.dist.jars
+--conf spark.yarn.archive
+--conf spark.yarn.dist.files
 --class com.spark.sql.jdbc.SparkDFtoOracle2 \
-Spark-hive-sql-Dataframe-0.0.1-SNAPSHOT-jar-with-dependencies.jar
-
+spark-hive-sql-application.jar
+```

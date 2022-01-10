@@ -1,12 +1,12 @@
 kafka-python
-jellyfish
-certifi
-matplotlib
-numpy
-pytz
 confluent-kafka[avro]==1.8.2
 avro==1.11.0
 fastavro==1.4.9
+certifi
+jellyfish
+matplotlib
+numpy
+pytz
 fastapi
 pydantic
 uvicorn
@@ -15,3 +15,4 @@ pyrsistent==0.16.1;python_version<"3.0"
 pyrsistent;python_version>"3.0"
 jsonschema
 requests
+faker

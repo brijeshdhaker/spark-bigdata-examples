@@ -54,12 +54,18 @@
             <version>3.1</version>
         </dependency>
 
-        <!-- Elastic Search -->
+        <!-- Elastic Search : elasticsearch-spark-20_2.11 for spark-2.x.x-->
         <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-spark-20 -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-spark-20_2.11</artifactId>
-            <version>7.8.1</version>
+            <artifactId>elasticsearch-spark-30_${spark.scala}</artifactId>
+            <version>7.16.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.spark</groupId>
+                    <artifactId>spark-core_${spark.scala}</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -81,6 +87,12 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming_${spark.scala}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka-0-10_${spark.scala}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 

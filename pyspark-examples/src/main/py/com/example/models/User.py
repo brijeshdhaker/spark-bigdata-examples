@@ -4,8 +4,10 @@
 
 from uuid import uuid4
 from datetime import datetime
+from datetime import datetime
 import pytz
 import random
+from faker import Faker
 #
 class User(object):
 
@@ -41,15 +43,20 @@ class User(object):
 
     @staticmethod
     def random():
+
+        d1 = datetime.strptime('1/1/2008 1:30 PM', '%m/%d/%Y %I:%M %p')
+        d2 = datetime.strptime('1/1/2009 4:50 AM', '%m/%d/%Y %I:%M %p')
+
+        #print(random_date(d1, d2))
+        fake = Faker()
         u = User()
         u.id = random.randint(1000, 5000)
-        r_name = random.choice(User.NAMES)
-        u.name = random.choice(r_name[0])
-        u.emailAddr = random.choice(r_name[1])
+        u.name = fake.name()
+        u.emailAddr = fake.email()
         u.age= random.randint(18, 70)
         u.dob= random.randint(18, 70)
         u.height = round(random.uniform(5.0, 7.0))
-        u.roles = ['admin', 'Technology'],
+        u.roles = ['Admin', 'Technology'],
         u.status = 'Active'
         return u
 

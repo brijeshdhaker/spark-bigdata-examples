@@ -11,7 +11,7 @@ from pyspark import SparkContext, SparkConf
 from pyspark.sql import SQLContext
 from pyspark.sql.functions import lit
 
-conf = SparkConf().setAppName("updateSchools")
+conf = SparkConf().setAppName("ElasticSearchReadWrite")
 sc = SparkContext(conf=conf)
 sc.setLogLevel("INFO")
 spark = SQLContext(sc)

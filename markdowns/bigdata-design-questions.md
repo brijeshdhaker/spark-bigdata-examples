@@ -1,3 +1,7 @@
+### The main difference between scaling up and scaling out is that 
+* Horizontal scaling : Adds more machine resources to your existing machine infrastructure. 
+* Vertical scaling : Adds power to your existing machine infrastructure by increasing power from CPU or RAM to existing machines.
+
 ### What exactly is big data?
 The definition of big data is data that contains greater variety, arriving in increasing volumes and with more velocity. This is also known as the three Vs.
 

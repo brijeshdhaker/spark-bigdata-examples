@@ -11,3 +11,4 @@ protobuf
 requests
 certifi
 matplotlib==2.2.5
+faker

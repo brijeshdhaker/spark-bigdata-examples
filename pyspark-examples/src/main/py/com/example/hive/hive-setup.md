@@ -191,8 +191,8 @@ LINES TERMINATED BY '\n'
 STORED AS textfile
 LOCATION '/user/brijeshdhaker/hiveexttable'
 TBLPROPERTIES(
-"creator"="Brijesh K Dhaker", 
-"skip.header.line.count"="1"
+    "creator"="Brijesh K Dhaker", 
+    "skip.header.line.count"="1"
 );
 
 LOAD DATA INPATH '/data/Employee.txt' OVERWRITE INTO TABLE SPARK_APPS.EMPLOYEE_EXTERNAL_TABLE;
@@ -334,33 +334,21 @@ OR
 2) LOAD DATA local INPATH '/apps/hostpath/datasets/zipcodes20.csv' INTO TABLE zipcodes_tmp;
 3) INSERT OVERWRITE TABLE zipcodes PARTITION(state) SELECT RecordNumber,Country,City,Zipcode,State from  zipcodes_tmp;
 
-
-
 SHOW PARTITIONS zipcodes;
 SHOW PARTITIONS zipcodes PARTITION(state='NC');
 
 ALTER TABLE zipcodes ADD PARTITION (state='CA') LOCATION '/user/data/zipcodes_ca';
 ALTER TABLE zipcodes PARTITION (state='AL') RENAME TO PARTITION (state='NY');
-
 ALTER TABLE zipcodes DROP IF EXISTS PARTITION (state='AL');
+ALTER TABLE zipcodes RECOVER PARTITIONS LIKE 'state=*'
 MSCK REPAIR TABLE zipcodes SYNC PARTITIONS;
-
+DESCRIBE FORMATTED zipcodes;
 DESCRIBE FORMATTED zipcodes PARTITION(state='PR');
-
 SHOW TABLE EXTENDED LIKE zipcodes PARTITION(state='PR');
-
-
-DESCRIBE FORMATTED hive_partitioned_table;
-
-ALTER TABLE slice_miniwikistats RECOVER PARTITIONS LIKE '20110102*'
-
 ```
-#
 #### Hive Bucketing Example
-#
 ```
 DROP TABLE IF EXISTS zipcodes;
-
 CREATE TABLE zipcodes(
     RecordNumber int,
     Country string,
@@ -378,7 +366,6 @@ set hive.enforce.bucketing = true;
 LOAD DATA INPATH '/data/zipcodes.csv' INTO TABLE zipcodes;
 SELECT * FROM zipcodes WHERE state='PR' and country=704;
 
-
 CREATE TABLE IF NOT EXISTS buckets_test.nytaxi_sample_bucketed (
     trip_id INT,
     vendor_id STRING,
@@ -392,7 +379,9 @@ LOCATION ‘s3:///buckets_test/hive-clustered/’;
 
 #
 #
+```
 scala> spark.conf.get("spark.sql.catalogImplementation")
 scala> spark.catalog.listTables.show
 scala> spark.sharedState.externalCatalog.listTables("default")
 scala> sql("DESCRIBE EXTENDED tweeter_tweets").show(Integer.MAX_VALUE, truncate = false)
+```
