@@ -89,6 +89,8 @@ services:
     container_name: mariadb
     hostname: mariadb
     restart: always
+    ports:
+      - "3306:3306"
     volumes:
       - /apps/hostpath:/apps/hostpath
       - /apps/hostpath/sandbox2/mysql/conf:/etc/mysql/conf.d
@@ -100,8 +102,6 @@ services:
       MYSQL_DATABASE: PUBLIC
       MYSQL_USER: developer
       MYSQL_PASSWORD: pDSSW0rd
-    ports:
-      - 3306:3306
 
   #
   # Cassandra Server
@@ -278,15 +278,15 @@ services:
     restart: always
     depends_on:
       - zookeeper
+    ports:
+      - "16000:16000"
+      - "16010:16010"
+    volumes:
+      - "/apps/hostpath:/apps/hostpath"
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 zookeeper:2181"
     env_file:
       - sandbox2.env
-    ports:
-      - 16000:16000
-      - 16010:16010
-    volumes:
-      - "/apps/hostpath:/apps/hostpath"
 
   #
   hbase-region:
@@ -296,16 +296,16 @@ services:
     restart: always
     depends_on:
       - zookeeper
+    ports:
+      - "16020:16020"
+      - "16030:16030"
+    volumes:
+      - "/apps/hostpath:/apps/hostpath"
     env_file:
       - sandbox2.env
     environment:
       HBASE_CONF_hbase_regionserver_hostname: hbase-region
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 zookeeper:2181 hbase-master:16010"
-    ports:
-      - 16020:16020
-      - 16030:16030
-    volumes:
-      - "/apps/hostpath:/apps/hostpath"
 
   #
   # Zeppelin Notebook
@@ -337,10 +337,10 @@ services:
   #
   # Apache NiFi
   #
-  hdf-nifi:
+  nififlow:
     image: hortonworks/nifi:latest
-    container_name: hdf-nifi
-    hostname: hdf-nifi
+    container_name: nififlow
+    hostname: nififlow
     restart: always
     ports:
       - "19090:8080"
@@ -366,3 +366,4 @@ networks:
   default:
     driver: bridge
     name: sandbox-bigdata.net
+
