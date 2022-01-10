@@ -1,11 +1,11 @@
 #!/usr/bin/python2
-
+from uuid import uuid4
 from kafka import KafkaProducer
 from random import randint
 from time import sleep
 import sys
 
-BROKER = 'localhost:19092'
+BROKER = 'kafka-broker:9092'
 TOPIC = 'tweeter-tweets'
 
 WORD_FILE = '/usr/share/dict/words'
@@ -22,6 +22,7 @@ while True:
     for _ in range(randint(2, 7)):
         message += WORDS[randint(0, len(WORDS)-1)] + ' '
     print(">>> '{}'".format(message))
-    p.send(TOPIC, message)
+    p.send(topic=TOPIC, value=bytes(str(message), encoding='utf8'), key=bytes(str(uuid4()), encoding='utf8'))
+    #p.send(TOPIC, message)
     sleep(randint(1, 4))
 

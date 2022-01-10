@@ -6,8 +6,8 @@ The application will read the messages as posted and count the frequency of word
 This will then be updated in the Cassandra table we created earlier.
 
 Let's quickly visualize how the data will flow:
-![](image/Simple-Data-Pipeline-1.jpg)
-#
+
+![](../../../../../../../images/Twitter Sentiment with Watson TA and PI architecture diagram.png)
 
 #
 ##### Topic - Creation
@@ -62,8 +62,19 @@ PARTITIONED BY(txn_receive_date string)
 STORED AS Parquet
 LOCATION  'hdfs://namenode:9000/transaction_details/'
 TBLPROPERTIES("creator"="Brijesh K Dhaker");
-```
 
+drop table IF EXISTS tweeter_tweets;
+CREATE TABLE if not exists tweeter_tweets (
+    uuid STRING,
+    text STRING, 
+    words INT, 
+    length INT
+) 
+STORED AS ORC;
+
+select count(*) from tweeter_tweets;
+
+```
 #
 ### Create Cassandra Table
 #

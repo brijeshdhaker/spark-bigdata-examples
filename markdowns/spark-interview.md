@@ -1,3 +1,8 @@
+### What is RDD
+
+### What are wider transformations ..?
+![](../images/spark-wide-transformation-1.jpg)
+
 ### 1. Suppose you have a spark dataframe which contains millions of records. You need to perform multiple actions on it. How will you minimize the execution time?
 Answer : You can use cache or persist. For eg say you have dataframe df and if you use df1=df.cache() ,then df1 will be stored in its storage. once it is stored in its storage, multiple actions can be performed. Only first action will take longer time than others because on the first action, it actually caches the data. You can check the storage size of df1 from spark application tracker.
 

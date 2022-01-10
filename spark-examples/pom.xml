@@ -30,7 +30,14 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${spark.scala}</artifactId>
             <version>${spark.version}</version>
-            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-hive -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${spark.scala}</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -39,14 +39,28 @@ Big data solutions typically involve one or more of the following types of workl
 * Predictive analytics and machine learning.
 
 ### Why we need Data Pipeline?
+To process large amounts of real-time or streaming data requires you to build a data processing pipeline. The main challenge in building such a pipeline is to minimize latency & achieve near real-time processing rate to process high-throughput data.
 * Convert incoming data to a common format.
 * Prepare data for Analysis and Visualization.
 * Migrate between Databases.
 * Share Data Processing logic across Web Apps, Batch Jobs, and APIs.
 * Power your Data Ingestion and Integration tools.
 
+#### What is expectations from Real Time Data Ingestion framework.?
+* Quick Response
+* Replayability
+* Reliability
+* Scalability
+* Ease of Integration
+* Ease of Switching
+* Capturing Schema Changes
+
+#### What are the goal of Data Ingestion framework .?
+
+![](../images/xenonstack-goals-of-data-ingestion.jpg)
+
 ### What is the Lambda Architecture :
-Lambda architecture is a data-processing architecture designed to handle massive quantities of data by taking advantage of both batch and stream-processing methods. 
+Lambda architecture is a data-processing architecture designed to handle massive quantities of data by taking advantage of both `Batch` and `Realtime Stream Processing` methods. 
 This approach to architecture attempts to balance latency, throughput, and fault-tolerance by using batch processing to provide comprehensive and accurate views 
 of batch data, while simultaneously using real-time stream processing to provide views of online data.
 
@@ -63,15 +77,6 @@ There are some similarities to the lambda architecture's batch layer, in that th
 
 If you need to recompute the entire data set (equivalent to what the batch layer does in lambda), you simply replay the stream, typically using parallelism to complete the computation in a timely fashion.
 
-#### What is expectation from RealTime Data Ingestion framework.?
-* Quick Response
-* Replayability
-* Reliability
-* Scalability
-* Ease of Integration
-* Ease of switching
-* Capturing Schema Changes
-
 #### How to generate Live Report with last 20 yr of Data.
 ![process-large-data](../images/process-large-data.png)
 
@@ -85,3 +90,4 @@ and unstructured data in one database.
 #### What are different Big Data formats ..?
 
 ![](../images/bigdata_data_formats.png)
+
