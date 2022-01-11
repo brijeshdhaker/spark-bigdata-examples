@@ -12,7 +12,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 import java.util.UUID
 
-object HiveDstreamTransformer extends App {
+object CassandraDstreamTransformer extends App {
 
   def processRecord(x:Row): Unit ={
 
@@ -65,34 +65,6 @@ object HiveDstreamTransformer extends App {
   val lines = stream.map(record => (record.key, record.value))
 
   lines.foreachRDD(rdd => processRecord(rdd))
-
-  /*
-  lines.foreachRDD(rdd => {
-
-    // 1 - Create a SchemaRDD object from the rdd and specify the schema
-    val recordsRDD = rdd.map(x => (Row(UUID.randomUUID().toString, x._2, x._2.split(" ").size, x._2.size)))
-    recordsRDD.map(processRecord)
-
-    val schema = StructType( Array(
-      StructField("uuid", StringType, true),
-      StructField("text", StringType, true),
-      StructField("words", IntegerType, true),
-      StructField("length", IntegerType, true)
-    ))
-
-    val recordsDF = ss.createDataFrame(recordsRDD, schema)
-    recordsDF.show()
-
-    // 2 - register it as a spark sql table
-    //recordsDF.registerTempTable("sparktable")
-
-    // 3 - qry sparktable to produce another SchemaRDD object of the data needed 'finalParquet'. and persist this as parquet files
-    //val finalParquet = ss.sql("sql")
-    //finalParquet.write.saveAsTable("")
-    recordsDF.write.format("orc").mode(SaveMode.Append).saveAsTable("default.tweeter_tweets")
-
-  })
-  */
 
   ssc.start()
   ssc.awaitTermination()

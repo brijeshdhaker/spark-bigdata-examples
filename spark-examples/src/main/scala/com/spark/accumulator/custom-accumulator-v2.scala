@@ -50,11 +50,11 @@ object SparkCustomAccumulator extends App {
 
   var ca = ComplexAccumulatorV2
 
-  var rdd = sc.parallelize(1 to 10)
+  var rdd = sc.parallelize(1 to 20)
   var res = rdd.map(x => ca.add(new MyComplex(x,x)))
   res.count
-  ca.value.x
-  ca.value.y
+  println("ComplexAccumulatorV2.X " + ca.value.x)
+  println("ComplexAccumulatorV2.Y " + ca.value.y)
 
 
 }
