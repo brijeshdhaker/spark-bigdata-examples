@@ -19,35 +19,42 @@ object CassandraDstreamTransformer extends App {
   }
 
   def processRecord(rdd: RDD[(String,String)]): Unit ={
+    if(rdd.isEmpty()) {
+      // 1 - Create a SchemaRDD object from the rdd and specify the schema
+      val recordsRDD = rdd.map(x => (Row(UUID.randomUUID().toString, x._2, x._2.split(" ").size, x._2.size)))
 
-    // 1 - Create a SchemaRDD object from the rdd and specify the schema
-    val recordsRDD = rdd.map(x => (Row(UUID.randomUUID().toString, x._2, x._2.split(" ").size, x._2.size)))
+      val schema = StructType(Array(
+        StructField("uuid", StringType, true),
+        StructField("text", StringType, true),
+        StructField("words", IntegerType, true),
+        StructField("length", IntegerType, true)
+      ))
+      val recordsDF = ss.createDataFrame(recordsRDD, schema)
+      recordsDF.show()
 
-    val schema = StructType( Array(
-      StructField("uuid", StringType, true),
-      StructField("text", StringType, true),
-      StructField("words", IntegerType, true),
-      StructField("length", IntegerType, true)
-    ))
-    val recordsDF = ss.createDataFrame(recordsRDD, schema)
-    recordsDF.show()
-    // 2 - register it as a spark sql table
-    //recordsDF.registerTempTable("sparktable")
-    // 3 - qry sparktable to produce another SchemaRDD object of the data needed 'finalParquet'. and persist this as parquet files
-    //val finalParquet = ss.sql("sql")
-    //finalParquet.write.saveAsTable("")
-    // Turn on flag for Hive Dynamic Partitioning
-    ss.conf.set("hive.exec.dynamic.partition", "true")
-    ss.conf.set("hive.exec.dynamic.partition.mode", "nonstrict")
-    //recordsDF.write.mode("overwrite").saveAsTable("default.tweeter_tweets")
-    recordsDF.write.mode(SaveMode.Append).saveAsTable("tweeter_tweets")
+      // Write To Cassandra
+      recordsDF.write.format("org.apache.spark.sql.cassandra")
+        .options(Map("table" -> "tweeter_tweets", "keyspace" -> "spark_stream"))
+        .mode(SaveMode.Append)
+        .save()
+
+      println("Provide RDD records written into Cassandra.")
+
+    }else{
+      println("Provide RDD is empty.")
+    }
+
   }
 
-  val conf = new SparkConf().setAppName("hive-stream-transformer").setMaster("local[4]")
+  val conf = new SparkConf()
+    .setAppName("hive-stream-transformer")
+    .set("spark.cassandra.connection.host", "127.0.0.1")
+    .setMaster("local[4]")
+
   val sc = new SparkContext(conf)
   sc.setLogLevel("WARN")
-  val ss = SparkSession.builder().enableHiveSupport().getOrCreate()
 
+  val ss = SparkSession.builder().enableHiveSupport().getOrCreate()
   val ssc = new StreamingContext(sc, Durations.seconds(10))
 
   val kafkaParams = Map[String, Object](

@@ -31,7 +31,7 @@ object HBaseDstreamTransformer extends App {
   }
 
   def processRecord(rdd: RDD[(String,String)]): Unit ={
-    if(rdd.count() > 0) {
+    if(rdd.isEmpty()) {
       // 1 - Create a SchemaRDD object from the rdd and specify the schema
       val recordsRDD = rdd.map(x => (Row(UUID.randomUUID().toString, x._2, x._2.split(" ").size, x._2.size)))
       val schema = StructType( Array(
