@@ -1,4 +1,14 @@
-### What is RDD
+
+### Spark Features 
+![](../images/Spark_Features.png)
+
+### What is `Resilient Distributed Dataset`  RDD ..?
+An RDD is a collection of data which is partitioned, it is similar to a distributed collection. The more the number of partitions in an RDD, the more the parallelism. When a job runs, each partition will be moved to the node where it is going to be processed.
+
+`Resilient Distributed Dataset` (RDD) is the fundamental data structure of Spark. They are immutable Distributed collections of objects of any type. As the name suggests is a Resilient (Fault-tolerant) records of data that resides on multiple nodes.
+Each Dataset in Spark RDD is divided into logical partitions across the cluster and thus can be operated in parallel, on different nodes of the cluster. These RDDs can be created by deterministic operations on data on stable storage or other RDDs by either an existing Scala collection or with an external file in the HDFS(or any other supported file system). Users can opt to persist an RDD in memory so that it can be reused multiple times efficiently. RDDs also have the potential to recover from faults occurrences in the system automatically.
+
+![](../images/spark-rdd.png)
 
 ### What are wider transformations ..?
 ![](../images/spark-wide-transformation-1.jpg)
@@ -8,11 +18,22 @@ Answer : You can use cache or persist. For eg say you have dataframe df and if y
 
 You can pass different storage level in persist.
 Different storage levels are :
-MEMORY_ONLY
-DISK_ONLY
-MEMORY_AND_DISK
-MEMORY_ONLY_SER
-MEMORY_AND_DISK_SER
+* MEMORY_ONLY
+* MEMORY_ONLY_SER
+* MEMORY_AND_DISK
+* MEMORY_AND_DISK_SER
+* DISK_ONLY
+* OFF_HEAP
+
+| Persistence Level   | Space Consumed    | CPU time	 | In-memory?     | On-disk? |
+|:--------------------|:-----------------|:---------|:---------------|:-------------|
+| MEMORY_ONLY 	       | High 	          | Low      | Yes	         | No            |
+| MEMORY_ONLY_SER     | Low High         | Yes      | No            |               |
+| MEMORY_AND_DISK     | High	          | Medium	 | Some	         | Some          |
+| MEMORY_AND_DISK_SER | Low High         | Some     | Some          |               |
+| DISK_ONLY           | Low High         | No       | Yes           |               |
+| OFF_HEAP            | Low High         | Yes      | (but off-heap)| No            |
+
 
 ### 2. If your cluster have limited resources, and there are many applications which need to be run, how would you ensure that your spark application will take the fixed number of resource and hence does not impact execution of other applications?
 Answer : While submitting the spark application pass these two parameters .
@@ -20,10 +41,10 @@ Answer : While submitting the spark application pass these two parameters .
 –conf spark.dynamicAllocation.enabled = false
 Note: you can change the number of executors if you need.
 
-### :
-Spark 1.x – Introduced Catalyst Optimizer and Tungsten Execution Engine
-Spark 2.x – Added Cost-Based Optimizer
-Spark 3.0 – Now added Adaptive Query Execution
+### Key Feature of Spark Major Releases
+* `Spark 1.x` – Introduced Catalyst Optimizer and Tungsten Execution Engine
+* `Spark 2.x` – Added Cost-Based Optimizer
+* `Spark 3.0` – Now added Adaptive Query Execution
 
 ### 3.How would you check if rdd is empty, without using collect?
 Answer : You can use rdd.isEmpty ,it will return true if rdd is empty.
@@ -91,7 +112,13 @@ Apache Spark Streaming is a scalable fault-tolerant streaming processing system 
 ![](../images/Apache-Spark-Streaming-ecosystem-diagram.png)
 
 ### Q. Explain Spark DStream
+Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams. Data can be ingested from many sources like Kafka, Kinesis, or TCP sockets, and can be processed using complex algorithms expressed with high-level functions like map, reduce, join and window. Finally, processed data can be pushed out to filesystems, databases, and live dashboards. In fact, you can apply Spark’s machine learning and graph processing algorithms on data streams.
 ![](../images/spark-streaming.png)
+
+Internally, it works as follows. Spark Streaming receives live input data streams and divides the data into batches, which are then processed by the Spark engine to generate the final stream of results in batches.
+
+![](../images/streaming-flow.png)
+
 
 ### Q5. What is Spark Structured Streaming?
 The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an incremental query on the unbounded input table. Let’s understand this model in more detail.

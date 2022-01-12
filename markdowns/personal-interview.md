@@ -36,32 +36,28 @@ Here's an overview of types of experience that you might find motivating (though
 * spotting flaws and errors so as to make sure the end result of a project is as good as possible
 * finding a way to solve a problem, or overcome a challenge
 
-#
 #### In your answer please explain: What values do you want to see lived in your workplace?
-#
 Some (possibly conflicting) examples of workplace values include:
-Being accountable.
-Making a difference.
-Focusing on detail.
-Delivering quality.
-Being completely honest.
-Keeping promises.
-Being reliable.
-Being positive.
-Meeting deadlines.
-Helping and respecting others.
-Being a great team member.
-Respecting company policy and rules.
-Showing tolerance.
+* Being accountable.
+* Making a difference.
+* Focusing on detail.
+* Delivering quality.
+* Being completely honest.
+* Keeping promises.
+* Being reliable.
+* Being positive.
+* Meeting deadlines.
+* Helping and respecting others.
+* Being a great team member.
+* Respecting company policy and rules.
+* Showing tolerance.
 
-#
 #### What would you do to build these values in your team or organisation?
-#
 Create a team-oriented organization. Make teamwork one of your core company values, and put a clear emphasis on self-managing teams that are empowered to make their own decisions. ...
-Assign serious team goals. ...
-Encourage informal teams. ...
-Cross-train employees. ...
-Provide team resources.
+* Assign serious team goals. ...
+* Encourage informal teams. ...
+* Cross-train employees. ...
+* Provide team resources.
 
 #### Who do you learn best from?
 1. Our own mistakes
