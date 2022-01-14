@@ -9,7 +9,7 @@ spark = SparkSession \
     .appName("structured-kafka-stream") \
     .getOrCreate()
 
-spark.conf.set("spark.sql.streaming.checkpointLocation", "/home/brijeshdhaker/IdeaProjects/spark-bigdata-examples/.checkpoints/")
+spark.conf.set("spark.sql.streaming.checkpointLocation", "/structured-stream/checkpoints/")
 spark.conf.set("spark.sql.shuffle.partitions", "1")
 spark.conf.set("spark.sql.hive.convertMetastoreParquet", "false")
 
@@ -151,6 +151,7 @@ hiveWarehouseDF.writeStream \
     .option("checkpointLocation", "hdfs://namenode:9000/checkpoints/transaction_details/") \
     .partitionBy("txn_receive_date") \
     .trigger(processingTime="30 seconds") \
+    .outputMode("append")\
     .start()
 
 # Writing to console sink (for debugging)

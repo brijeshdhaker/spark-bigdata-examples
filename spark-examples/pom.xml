@@ -102,16 +102,17 @@
             <version>${spark.version}</version>
         </dependency>
 
+        <!-- org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql-kafka-0-10_${spark.scala}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
             <version>3.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>${hbase.client.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.delta/delta-core -->
@@ -130,6 +131,18 @@
         -->
 
         <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-shaded-mapreduce</artifactId>
+            <version>2.4.9</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.hbase.connectors.spark</groupId>
             <artifactId>hbase-spark</artifactId>
             <version>1.0.1_s3.1.2-h2.4.9</version>
@@ -139,12 +152,6 @@
             <groupId>org.apache.hbase.connectors.spark</groupId>
             <artifactId>hbase-spark-protocol-shaded</artifactId>
             <version>1.0.1_s3.1.2-h2.4.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-shaded-mapreduce</artifactId>
-            <version>2.4.9</version>
         </dependency>
 
     </dependencies>

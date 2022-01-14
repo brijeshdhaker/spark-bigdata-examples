@@ -138,6 +138,7 @@ The key idea in Structured Streaming is to treat a live data stream as a table t
 | Window Functions      | (in addition to Aggregate Functions)	cumeDist, denseRank, lag, lead, ntile, percentRank, rank, rowNumber                                                                                                                                                                                                                                                                                                                   |
 
 ### Spark Performance Tuning : (Memory, Data Size,N/W Consumption)
+#### Setup Side
 * Data Serialization : Java Vs Kyro serialization 
 * Memory Tuning : Driver & Executors Memory 
 * Tuning Data Structure : FastUtil Collection Set
@@ -146,6 +147,27 @@ The key idea in Structured Streaming is to treat a live data stream as a table t
 * Right Level of Parallelism : 
 * Use Broadcast Tables : 
 * Data Locality : 
+#### Programming Side
+* Use DataFrame/Dataset over RDD
+* Use coalesce() over repartition()
+* Use mapPartitions() over map()
+* Use Serialized data format’s
+* Avoid UDF’s (User Defined Functions)
+* Caching data in memory
+* Reduce expensive Shuffle operations
+* Disable DEBUG & INFO Logging
+
+### Project Tungsten
+Spark Dataset/DataFrame includes Project Tungsten which optimizes Spark jobs for Memory and CPU efficiency. Tungsten is a Spark SQL component that provides increased performance by rewriting Spark operations in bytecode, at runtime. Tungsten performance by focusing on jobs close to bare metal CPU and memory efficiency.
+
+Since DataFrame is a column format that contains additional metadata, hence Spark can perform certain optimizations on a query. Before your query is run, a logical plan is created using Catalyst Optimizer and then it’s executed using the Tungsten execution engine.
+
+### What is Catalyst?
+Catalyst Optimizer is an integrated query optimizer and execution scheduler for Spark Datasets/DataFrame. Catalyst Optimizer is the place where Spark tends to improve the speed of your code execution by logically improving it.
+
+Catalyst Optimizer can perform refactoring complex queries and decides the order of your query execution by creating a rule-based and code-based optimization.
+
+Additionally, if you want type safety at compile time prefer using Dataset. For example, if you refer to a field that doesn’t exist in your code, Dataset generates compile-time error whereas DataFrame compiles fine but returns an error during run-time.
 
 ### Why Spark over Hadoop ..?
 ![](../images/Hadoop-MapReduce-vs-Apache-Spark.jpg)

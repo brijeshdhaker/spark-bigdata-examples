@@ -65,6 +65,7 @@ $SPARK_HOME/bin/spark-submit \
 --master local[*] \
 --conf "spark.executorEnv.PYSPARK_DRIVER_PYTHON=python" \
 --conf "spark.executorEnv.PYSPARK_PYTHON=./venv/bin/python" \
+#spark.yarn.dist.archives
 --archives "file:///apps/hostpath/spark/artifacts/venv.zip#venv" \
 --py-files "file:///apps/hostpath/spark/artifacts/application.zip" /apps/hostpath/spark/artifacts/hello.py
 

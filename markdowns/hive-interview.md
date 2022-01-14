@@ -98,5 +98,52 @@ Now, only 50 buckets will be created no matter how many unique values are there 
 hive.exec.dynamic.partition=true
 hive.exec.dynamic.partition.mode=nonstrict
 
-### 
+### What is the Lateral View ?
+Explode function displays each element of collection data type as single row.
+```
+CREATE TABLE Products (
+ id INT, 
+ ProductName STRING, 
+ ProductColorOptions ARRAY<STRING>
+);
 
+select * from products;
+
+1 Watches [“Red”,”Green”]
+2 Clothes [“Blue”,”Green”]
+3 Books [“Blue”,”Green”,”Red”]
+
+```
+#
+```
+select explode(ProductColorOptions ) from products;
+Red
+Green
+```
+But I want to join with other columns like id but that leads to an error.
+In that case, we need to use Lateral View.Lateral view creates a virtual table for exploded columns and make join with the base table.
+We need not worry about the virtual table as it is done by hive internally.
+```
+SELECT p.id,p.productname,colors.colorselection FROM default.products P
+LATERAL VIEW EXPLODE(p.productcoloroptions) colors as colorselection;
+1 Watches Red
+1 Watches Green
+2 Clothes Blue
+```
+
+### What is the Accumulative SUM in Hive ?
+```hive
+1 JAN-2021  1000$
+2 JAN-2021  2000$
+3 FEB-2021  500$
+4 MAR-2021  350$
+5 MAR-2021  500$
+
+to 
+
+1 JAN-2021  1000$
+2 JAN-2021  3000$
+3 FEB-2021  500$
+4 MAR-2021  350$
+5 MAR-2021  850$
+```

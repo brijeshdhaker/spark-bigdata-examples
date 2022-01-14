@@ -9,6 +9,16 @@ Two more Vs have emerged over the past few years: value and veracity. Data has i
 
 ![big_data](../images/bigdata_vs.png)
 
+* Storage services: HDFS (Hadoop Distributed File System)
+* Processing services : MapReduce , Apache Spark, Apache Flink
+* Data Warehousing services : Apache Hive
+* Orchestrating services : Oozie, Airflow
+* Stream processing Service : Spark Streaming, Kafka
+* ETL(Extract-Transform-Load) Service : Apache NiFi
+* Co-ordinating services : Zookeeper
+* Security Services : Ranger, Kerberos
+* NoSQL store : HBase
+
 ### Big data benefits:
 * Big data makes it possible for you to gain more complete answers because you have more information.
 * More complete answers mean more confidence in the data—which means a completely different approach to tackling problems.
@@ -91,3 +101,8 @@ and unstructured data in one database.
 
 ![](../images/bigdata_data_formats.png)
 
+### Which compression to choose
+Not writing ORC files in compression results in larger disk space and slower in performance. Hence, it is suggestable to use compression. Below are basic comparison between ZLIB and SNAPPY when to use what.
+
+When you need a faster read then ZLIB compression is to-go option, without a doubt, It also takes smaller storage on disk compared with SNAPPY.
+ZLIB is slightly slower in write compared with SNAPPY. If you have large data set to write, use SNAPPY. For smaller datasets, it is still suggestible to use ZLIB.
