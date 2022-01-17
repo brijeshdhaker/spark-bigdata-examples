@@ -131,6 +131,7 @@ services:
       - "9870:9870"
       - "9000:9000"
     volumes:
+      - /apps/hostpath/sandbox3/hadoop/dfs/name:/hadoop/dfs/name
       - /apps/hostpath:/apps/hostpath
     environment:
       - CLUSTER_NAME=test
@@ -147,6 +148,7 @@ services:
       - "9866:9866"
     restart: always
     volumes:
+      - /apps/hostpath/sandbox3/hadoop/dfs/data:/hadoop/dfs/data
       - /apps/hostpath:/apps/hostpath
     environment:
       SERVICE_PRECONDITION: "namenode:9870"
@@ -195,6 +197,7 @@ services:
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
     volumes:
+      - /apps/hostpath/sandbox3/hadoop/yarn/timeline:/hadoop/yarn/timeline
       - /apps/hostpath:/apps/hostpath
     env_file:
       - sandbox3.env
@@ -258,8 +261,8 @@ services:
     env_file:
       - sandbox3.env
     ports:
-      - 16000:16000
-      - 16010:16010
+      - "16000:16000"
+      - "16010:16010"
     volumes:
       - "/apps/hostpath:/apps/hostpath"
 
@@ -274,8 +277,8 @@ services:
       HBASE_CONF_hbase_regionserver_hostname: hbase-region
       SERVICE_PRECONDITION: "namenode:9870 datanode:9864 zookeeper:2181 hbase-master:16010"
     ports:
-      - 16020:16020
-      - 16030:16030
+      - "16020:16020"
+      - "16030:16030"
     volumes:
       - "/apps/hostpath:/apps/hostpath"
 
@@ -296,7 +299,7 @@ services:
       - /apps/hostpath:/apps/hostpath
       - /opt/sandbox/hadoop-3.2.1:/opt/hadoop-3.2.1
       - /opt/sandbox/hbase-2.4.9:/opt/hbase-2.4.9
-      - /opt/sandbox/hbase-client:/opt/hbase-client
+      - /opt/sandbox/hbase-1.1.7:/opt/hbase-client
       - /opt/sandbox/hive-3.1.2:/opt/hive-3.1.2
       - /opt/sandbox/spark-3.1.2:/opt/spark-3.1.2
       - /apps/hostpath/sandbox3/zeppelin/conf:/opt/zeppelin/conf
@@ -327,5 +330,6 @@ services:
 #
 networks:
   default:
+    external: true
     driver: bridge
     name: sandbox-bigdata.net
