@@ -1,6 +1,18 @@
+### What is CAP Theorem
+Cap Theorem was developed by Eric Brewer at Berkeley University in the 2000s.
+
+He argues that it’s impossible that a distributed computer system can provide the 3 following properties at a time:
+
+* Consistency: When performing an operation you always have to receive the same information, regardless of the node that processes the order. It means that no matter which node that forms our Database receives an order, everyone must respond to the operation equally and must be transparent to us who effected it. All clients see the same version of data.
+* Availability: the system provides answers for all requests it receives, even if one or more nodes are down.
+* Tolerance to divisions:the system still Works even though it has been divided by a network failure.
+  ![CAP](https://www.hexacta.com/wp-content/uploads/2016/08/bigdate1.png)
+
+The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication.
+
 ### The main difference between scaling up and scaling out is that 
-* Horizontal scaling : Adds more machine resources to your existing machine infrastructure. 
-* Vertical scaling : Adds power to your existing machine infrastructure by increasing power from CPU or RAM to existing machines.
+* `Horizontal scaling` : Adds more machine resources to your existing machine infrastructure. 
+* `Vertical scaling` : Adds power to your existing machine infrastructure by increasing power from CPU or RAM to existing machines.
 
 ### What exactly is big data?
 The definition of big data is data that contains greater variety, arriving in increasing volumes and with more velocity. This is also known as the three Vs.
@@ -106,3 +118,6 @@ Not writing ORC files in compression results in larger disk space and slower in 
 
 When you need a faster read then ZLIB compression is to-go option, without a doubt, It also takes smaller storage on disk compared with SNAPPY.
 ZLIB is slightly slower in write compared with SNAPPY. If you have large data set to write, use SNAPPY. For smaller datasets, it is still suggestible to use ZLIB.
+
+
+### Spark Data Skewness ..?

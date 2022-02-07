@@ -120,10 +120,13 @@ Internally, it works as follows. Spark Streaming receives live input data stream
 ![](../images/streaming-flow.png)
 
 
-### Q5. What is Spark Structured Streaming?
+### Q5. What is Spark Structured Streaming ?
 The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an incremental query on the unbounded input table. Let’s understand this model in more detail.
 
 ![](../images/structured-streaming-stream-as-a-table.png)
+
+### How To manage offsets in Spark Streaming ?
+
 
 ### Spark Functions
 
