@@ -133,5 +133,11 @@ One big advantage of the Saga pattern is its support for long-lived transactions
 The Saga pattern is difficult to debug, especially when many microservices are involved. Also, the event messages could become difficult to maintain if the system gets complex. Another disadvantage of the Saga pattern is it does not have read isolation. For example, the customer could see the order being created, but in the next second, the order is removed due to a compensation transaction.
 Adding a process manager : To address the complexity issue of the Saga pattern, it is quite normal to add a process manager as an orchestrator. The process manager is responsible for listening to events and triggering endpoints.
 
+### Tracing Micro Services
+
+### API Gateway 
+
+### Service Discovery
+
 
 
