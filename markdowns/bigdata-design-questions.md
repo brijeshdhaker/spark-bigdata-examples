@@ -1,11 +1,11 @@
 ### What is CAP Theorem
 Cap Theorem was developed by Eric Brewer at Berkeley University in the 2000s.
-
 He argues that it’s impossible that a distributed computer system can provide the 3 following properties at a time:
 
 * Consistency: When performing an operation you always have to receive the same information, regardless of the node that processes the order. It means that no matter which node that forms our Database receives an order, everyone must respond to the operation equally and must be transparent to us who effected it. All clients see the same version of data.
 * Availability: the system provides answers for all requests it receives, even if one or more nodes are down.
 * Tolerance to divisions:the system still Works even though it has been divided by a network failure.
+
   ![CAP](https://www.hexacta.com/wp-content/uploads/2016/08/bigdate1.png)
 
 The CAP theorem states that it is not possible to guarantee all three of the desirable properties – consistency, availability, and partition tolerance at the same time in a distributed system with data replication.
@@ -113,11 +113,34 @@ and unstructured data in one database.
 
 ![](../images/bigdata_data_formats.png)
 
-### Which compression to choose
+#### Which compression to choose
 Not writing ORC files in compression results in larger disk space and slower in performance. Hence, it is suggestable to use compression. Below are basic comparison between ZLIB and SNAPPY when to use what.
 
 When you need a faster read then ZLIB compression is to-go option, without a doubt, It also takes smaller storage on disk compared with SNAPPY.
 ZLIB is slightly slower in write compared with SNAPPY. If you have large data set to write, use SNAPPY. For smaller datasets, it is still suggestible to use ZLIB.
 
 
-### Spark Data Skewness ..?
+#### Spark Data Skewness ..?
+Skewness is the statistical term, which refers to the value distribution in a given dataset. When we say that there is highly skewed data, it means that some column values have more rows and some very few, i.e., the data is not properly/evenly distributed. Data skewness affects the performance and parallelism in any distributed system.
+![](../images/1__RrR7Yv4G8OnSWNV6CU2Jg.webp)
+
+1. High Null Values in Join Tables .
+Solutions :
+2. `DATA PRE-PROCESS` : We need to divide the table into two parts. The first part will contain all the rows that don’t have a null key, and the second part will contain all the data with no null values.
+3. `SALTING` : Balance the key distribution so some keys won’t be hot spots (SALTING)
+4. `DATA BROADCAST` :
+5. `RE-PARTITIONS` : restructuring the table with a different partition key(s)
+6. Configure skew hint with relation name
+```SQL
+-- table with skew
+SELECT /*+ SKEW('orders') */ * FROM orders, customers WHERE c_custId = o_custId
+
+-- subquery with skew
+SELECT /*+ SKEW('C1') */ *
+  FROM (SELECT * FROM customers WHERE c_custId < 100) C1, orders
+  WHERE C1.c_custId = o_custId
+```
+7. A
+#### Explain Trade Data Pipeline
+
+#### Explain KYC Data Pipeline

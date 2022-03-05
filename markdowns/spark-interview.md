@@ -25,14 +25,14 @@ Different storage levels are :
 * DISK_ONLY
 * OFF_HEAP
 
-| Persistence Level   | Space Consumed    | CPU time	 | In-memory?     | On-disk? |
-|:--------------------|:-----------------|:---------|:---------------|:-------------|
-| MEMORY_ONLY 	       | High 	          | Low      | Yes	         | No            |
-| MEMORY_ONLY_SER     | Low High         | Yes      | No            |               |
-| MEMORY_AND_DISK     | High	          | Medium	 | Some	         | Some          |
-| MEMORY_AND_DISK_SER | Low High         | Some     | Some          |               |
-| DISK_ONLY           | Low High         | No       | Yes           |               |
-| OFF_HEAP            | Low High         | Yes      | (but off-heap)| No            |
+| Persistence Level   | Space Consumed | CPU time	 | In-memory?     | On-disk? |
+|:--------------------|:---------------|:----------|:---------------|:---------|
+| MEMORY_ONLY 	       | High 	         | Low       | Yes	           | No       |
+| MEMORY_ONLY_SER     | Low High       | Yes       | No             |          |
+| MEMORY_AND_DISK     | High	          | Medium	   | Some	          | Some     |
+| MEMORY_AND_DISK_SER | Low High       | Some      | Some           |          |
+| DISK_ONLY           | Low High       | No        | Yes            |          |
+| OFF_HEAP            | Low High       | Yes       | (but off-heap) | No       |
 
 
 ### 2. If your cluster have limited resources, and there are many applications which need to be run, how would you ensure that your spark application will take the fixed number of resource and hence does not impact execution of other applications?

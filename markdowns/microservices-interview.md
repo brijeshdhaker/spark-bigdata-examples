@@ -67,14 +67,14 @@ Services can use messaging protocols that are not web friendly, such as AMQP.
 ### Challenges
 The benefits of microservices don't come for free. Here are some of the challenges to consider before embarking on a microservices architecture.
 
-* **Complexity.** A microservices application has more moving parts than the equivalent monolithic application. Each service is simpler, but the entire system as a whole is more complex.
+* **Complexity.** Microservice Application has more moving parts than the equivalent monolithic application. Each service is simpler, but the entire system as a whole is more complex.
 * **Development and testing.** Writing a small service that relies on other dependent services requires a different approach than a writing a traditional monolithic or layered application. Existing tools are not always designed to work with service dependencies. Refactoring across service boundaries can be difficult. It is also challenging to test service dependencies, especially when the application is evolving quickly.
 * **Lack of governance.** The decentralized approach to building microservices has advantages, but it can also lead to problems. You may end up with so many different languages and frameworks that the application becomes hard to maintain. It may be useful to put some project-wide standards in place, without overly restricting teams' flexibility. This especially applies to cross-cutting functionality such as logging.
-* **Network congestion and latency.** The use of many small, granular services can result in more interservice communication. Also, if the chain of service dependencies gets too long (service A calls B, which calls C...), the additional latency can become a problem. You will need to design APIs carefully. Avoid overly chatty APIs, think about serialization formats, and look for places to use asynchronous communication patterns like queue-based load leveling.
-* **Data integrity.** With each microservice responsible for its own data persistence. As a result, data consistency can be a challenge. Embrace eventual consistency where possible.
+* **Network congestion and latency.** The use of many small, granular services can result in more inter service communication. Also, if the chain of service dependencies gets too long (service A calls B, which calls C...), the additional latency can become a problem. You will need to design APIs carefully. Avoid overly chatty APIs, think about serialization formats, and look for places to use asynchronous communication patterns like queue-based load leveling.
+* **Data Integrity.** With each microservice responsible for its own data persistence. As a result, data consistency can be a challenge. Embrace eventual consistency where possible.
 * **Management.** To be successful with microservices requires a mature DevOps culture. Correlated logging across services can be challenging. Typically, logging must correlate multiple service calls for a single user operation.
 * **Versioning.** Updates to a service must not break services that depend on it. Multiple services could be updated at any given time, so without careful design, you might have problems with backward or forward compatibility.
-* **Skill set.** Microservices are highly distributed systems. Carefully evaluate whether the team has the skills and experience to be successful.
+* **Skill Set.** Microservices are highly distributed systems. Carefully evaluate whether the team has the skills and experience to be successful.
 
 ### Best practices
 Model services around the business domain.
@@ -136,8 +136,27 @@ Adding a process manager : To address the complexity issue of the Saga pattern, 
 ### Tracing Micro Services
 
 ### API Gateway 
+* Using an API gateway has the following benefits:
+Insulates the clients from how the application is partitioned into microservices
+Insulates the clients from the problem of determining the locations of service instances
+Provides the optimal API for each client
+Reduces the number of requests/roundtrips. For example, the API gateway enables clients to retrieve data from multiple services with a single round-trip. Fewer requests also means less overhead and improves the user experience. An API gateway is essential for mobile applications.
+Simplifies the client by moving logic for calling multiple services from the client to API gateway
+Translates from a “standard” public web-friendly API protocol to whatever protocols are used internally
+
+* The API gateway pattern has some drawbacks:
+Increased complexity - the API gateway is yet another moving part that must be developed, deployed and managed
+Increased response time due to the additional network hop through the API gateway - however, for most applications the cost of an extra roundtrip is insignificant.
+ 
+* Issues:
+How implement the API gateway? An event-driven/reactive approach is best if it must scale to scale to handle high loads. On the JVM, NIO-based libraries such as Netty, Spring Reactor, etc. make sense. NodeJS is another option.
 
 ### Service Discovery
+When making a request to a service, the client makes a request via a router (a.k.a load balancer) that runs at a well known location. The router queries a service registry, which might be built into the router, and forwards the request to an available service instance.
+The following diagram shows the structure of this pattern.
+
+![](../images/server-side-discovery.jpg)
+
 
 
 
