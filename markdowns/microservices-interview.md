@@ -158,5 +158,4 @@ The following diagram shows the structure of this pattern.
 ![](../images/server-side-discovery.jpg)
 
 
-
-
+### 

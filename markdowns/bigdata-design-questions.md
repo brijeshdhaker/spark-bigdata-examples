@@ -140,7 +140,123 @@ SELECT /*+ SKEW('C1') */ *
   FROM (SELECT * FROM customers WHERE c_custId < 100) C1, orders
   WHERE C1.c_custId = o_custId
 ```
-7. A
+7. Isolating Salting
+8. Isolation MapJoin
+9. Iterative Broadcast Join
+
+#### Explain Small File Problems in HDFS & Spark & How this can be resolved.
+Disk Seek Issue
+Book Keeping By Name Node 
+
+1. Change your “feeder” software
+2. Run an offline aggregation process
+3. Add an additional Hadoop step
+4. Sequence File
+5. HBASE
+6. Custom Partitioner
+
+```
+val session = SparkSession.builder().master("local[2]").enableHiveSupport().getOrCreate()
+session.streams.addListener(AppListener(config,session))
+
+class AppListener(config: Config,spark: SparkSession) extends StreamingQueryListener {
+  override def onQueryStarted(event: StreamingQueryListener.QueryStartedEvent): Unit = {}
+  override def onQueryProgress(event: StreamingQueryListener.QueryProgressEvent): Unit = {
+    this.synchronized {AppListener.mergeFiles(event.progress.timestamp,spark,config)}
+  }
+  override def onQueryTerminated(event: StreamingQueryListener.QueryTerminatedEvent): Unit = {}
+}
+
+object AppListener {
+
+  def mergeFiles(currentTs: String,spark: SparkSession,config:Config):Unit = {
+    val configs = config.kafka(config.key.get)
+    if(currentTs.datetime.isAfter(Processed.ts.plusMinutes(5))) {
+
+      println(
+        s"""
+           |Current Timestamp     :     ${currentTs}
+           |Merge Files           :     ${Processed.ts.minusHours(1)}
+           |
+           |""".stripMargin)
+
+      val fs = FileSystem.get(spark.sparkContext.hadoopConfiguration)
+      val ts = Processed.ts.minusHours(1)
+      val hdfsPath = s"${configs.hdfsLocation}/year=${ts.getYear}/month=${ts.getMonthOfYear}/day=${ts.getDayOfMonth}/hour=${ts.getHourOfDay}"
+      val path = new Path(hdfsPath)
+
+      if(fs.exists(path)) {
+
+      val hdfsFiles = fs.listLocatedStatus(path)
+        .filter(lfs => lfs.isFile && !lfs.getPath.getName.contains("_SUCCESS"))
+        .map(_.getPath).toList
+
+      println(
+        s"""
+           |Total files in HDFS location  : ${hdfsFiles.length}
+           | ${hdfsFiles.length > 1}
+           |""".stripMargin)
+
+      if(hdfsFiles.length > 1) {
+
+          println(
+            s"""
+               |Merge Small Files
+               |==============================================
+               |HDFS Path             : ${hdfsPath}
+               |Total Available files : ${hdfsFiles.length}
+               |Status                : Running
+               |
+               |""".stripMargin)
+
+          val df = spark.read.format(configs.writeFormat).load(hdfsPath).cache()
+          df.repartition(1)
+            .write
+            .format(configs.writeFormat)
+            .mode("overwrite")
+            .save(s"/tmp${hdfsPath}")
+
+          df.cache().unpersist()
+
+        spark
+          .read
+          .format(configs.writeFormat)
+          .load(s"/tmp${hdfsPath}")
+          .write
+          .format(configs.writeFormat)
+          .mode("overwrite")
+          .save(hdfsPath)
+
+          Processed.ts = Processed.ts.plusHours(1).toDateTime("yyyy-MM-dd'T'HH:00:00")
+          println(
+            s"""
+               |Merge Small Files
+               |==============================================
+               |HDFS Path             : ${hdfsPath}
+               |Total files           : ${hdfsFiles.length}
+               |Status                : Completed
+               |
+               |""".stripMargin)
+        }
+      }
+    }
+  }
+  def apply(config: Config,spark: SparkSession): AppListener = new AppListener(config,spark)
+}
+
+object Processed {
+  var ts: DateTime = DateTime.now(DateTimeZone.forID("UTC")).toDateTime("yyyy-MM-dd'T'HH:00:00")
+}
+
+```
 #### Explain Trade Data Pipeline
 
 #### Explain KYC Data Pipeline
+1. Spark Workflow process for each country.
+
+#### Explain Spark Data Check Point
+
+#### Explain What Happen when  in Data Pipeline
+ 1. Kafka is Down
+ 2. Spark is Down
+
