@@ -1,6 +1,6 @@
 
 # Topic - Creation
-docker-compose -f dc-sandbox-cluster2.yml exec broker-0 kafka-topics \
+docker-compose -f dc-sandbox-cluster.yml exec kafka-broker kafka-topics \
 --create \
 --bootstrap-server kafka-broker:9092 \
 --partitions 3 \
@@ -8,10 +8,10 @@ docker-compose -f dc-sandbox-cluster2.yml exec broker-0 kafka-topics \
 --topic test-topic
 
 # Topic - List
-docker-compose -f dc-sandbox-cluster2.yml exec kafka-broker kafka-topics --list --bootstrap-server kafka-broker:9092
+docker-compose -f dc-sandbox-cluster.yml exec kafka-broker kafka-topics --list --bootstrap-server kafka-broker:9092
 
 # Topic - Describe
-docker-compose -f dc-sandbox-cluster2.yml exec kafka-broker kafka-topics --describe --topic test-topic --bootstrap-server kafka-broker:9092
+docker-compose -f dc-sandbox-cluster.yml exec kafka-broker kafka-topics --describe --topic test-topic --bootstrap-server kafka-broker:9092
 
 # Topic - Alter
 kafka-topics --alter --topic test-topic --partitions 9 --bootstrap-server kafka-broker:9092
@@ -20,10 +20,10 @@ kafka-topics --alter --topic test-topic --partitions 9 --bootstrap-server kafka-
 kafka-topics --delete --topic warm-topic --bootstrap-server kafka-broker:9092
 
 # Kafka - Broker Console
-docker-compose -f dc-sandbox-cluster2.yml exec kafka-broker bash
+docker-compose -f dc-sandbox-cluster.yml exec kafka-broker bash
 
 # Producer :
-docker-compose -f dc-sandbox-cluster2.yml exec kafka-broker bash
+docker-compose -f dc-sandbox-cluster.yml exec kafka-broker bash
 
 kafka-console-producer --topic test-topic --broker-list kafka-broker:9092
 
